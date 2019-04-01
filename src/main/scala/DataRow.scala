@@ -3,7 +3,7 @@ package dblab
 /**
  * Represents a row in a database relation.
  */
-class DataRow(val fieldMap: Map[String, Any]) extends Record {
+class DataRow(val fieldMap: Map[String, Any]) {
   def numFields = fieldMap.size
   def getField(name: String): Option[Any] = fieldMap.get(name) match {
     case Some(fld) => Some(fld)
@@ -54,7 +54,7 @@ case class Page(table: Table) {
   val fieldId = table.attributes.map(_.name).zipWithIndex.toMap
 }
 
-case class PageRow(page: Page, rowId: Int, values: Array[Any]) extends Record with Dynamic {
+case class PageRow(page: Page, rowId: Int, values: Array[Any]) extends Dynamic {
   def numFields = page.fieldId.size
   def getField(name: String): Option[Any] = page.fieldId.get(name) match {
     case Some(id) => Some(values(id))

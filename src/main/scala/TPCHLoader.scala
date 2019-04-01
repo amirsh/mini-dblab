@@ -111,7 +111,7 @@ case class LINEITEMRecord(
   val L_RECEIPTDATE: Int,
   val L_SHIPINSTRUCT: OptimalString,
   val L_SHIPMODE: OptimalString,
-  val L_COMMENT: OptimalString) extends CaseClassRecord
+  val L_COMMENT: OptimalString)
 
 case class ORDERSRecord(
   val O_ORDERKEY: Int,
@@ -122,7 +122,7 @@ case class ORDERSRecord(
   val O_ORDERPRIORITY: OptimalString,
   val O_CLERK: OptimalString,
   val O_SHIPPRIORITY: Int,
-  val O_COMMENT: OptimalString) extends CaseClassRecord
+  val O_COMMENT: OptimalString)
 
 case class CUSTOMERRecord(
   val C_CUSTKEY: Int,
@@ -132,7 +132,7 @@ case class CUSTOMERRecord(
   val C_PHONE: OptimalString,
   val C_ACCTBAL: Double,
   val C_MKTSEGMENT: OptimalString,
-  val C_COMMENT: OptimalString) extends CaseClassRecord
+  val C_COMMENT: OptimalString)
 
 case class SUPPLIERRecord(
   val S_SUPPKEY: Int,
@@ -141,25 +141,25 @@ case class SUPPLIERRecord(
   val S_NATIONKEY: Int,
   val S_PHONE: OptimalString,
   val S_ACCTBAL: Double,
-  val S_COMMENT: OptimalString) extends CaseClassRecord
+  val S_COMMENT: OptimalString)
 
 case class PARTSUPPRecord(
   val PS_PARTKEY: Int,
   val PS_SUPPKEY: Int,
   val PS_AVAILQTY: Int,
   val PS_SUPPLYCOST: Double,
-  val PS_COMMENT: OptimalString) extends CaseClassRecord
+  val PS_COMMENT: OptimalString)
 
 case class REGIONRecord(
   val R_REGIONKEY: Int,
   val R_NAME: OptimalString,
-  val R_COMMENT: OptimalString) extends CaseClassRecord
+  val R_COMMENT: OptimalString)
 
 case class NATIONRecord(
   val N_NATIONKEY: Int,
   val N_NAME: OptimalString,
   val N_REGIONKEY: Int,
-  val N_COMMENT: OptimalString) extends CaseClassRecord
+  val N_COMMENT: OptimalString)
 
 case class PARTRecord(
   val P_PARTKEY: Int,
@@ -170,21 +170,21 @@ case class PARTRecord(
   val P_SIZE: Int,
   val P_CONTAINER: OptimalString,
   val P_RETAILPRICE: Double,
-  val P_COMMENT: OptimalString) extends CaseClassRecord
+  val P_COMMENT: OptimalString)
 
 case class Q1GRPRecord(
   val L_RETURNFLAG: Char,
-  val L_LINESTATUS: Char) extends CaseClassRecord
+  val L_LINESTATUS: Char)
 
 case class Q3GRPRecord(
   val L_ORDERKEY: Int,
   val O_ORDERDATE: Int,
-  val O_SHIPPRIORITY: Int) extends CaseClassRecord
+  val O_SHIPPRIORITY: Int)
 
 
 case class Q9GRPRecord(
   val NATION: OptimalString,
-  val O_YEAR: Int) extends CaseClassRecord
+  val O_YEAR: Int)
 
 case class Q10GRPRecord(
   val C_CUSTKEY: Int,
@@ -193,22 +193,22 @@ case class Q10GRPRecord(
   val C_PHONE: OptimalString,
   val N_NAME: OptimalString,
   val C_ADDRESS: OptimalString,
-  val C_COMMENT: OptimalString) extends CaseClassRecord
+  val C_COMMENT: OptimalString)
 
 case class Q16GRPRecord1(
   val P_BRAND: OptimalString,
   val P_TYPE: OptimalString,
   val P_SIZE: Int,
-  val PS_SUPPKEY: Int) extends CaseClassRecord
+  val PS_SUPPKEY: Int)
 
 case class Q18GRPRecord(
   val C_NAME: OptimalString,
   val C_CUSTKEY: Int,
   val O_ORDERKEY: Int,
   val O_ORDERDATE: Int,
-  val O_TOTALPRICE: Double) extends CaseClassRecord
+  val O_TOTALPRICE: Double)
 
 case class Q20GRPRecord(
   val PS_PARTKEY: Int,
   val PS_SUPPKEY: Int,
-  val PS_AVAILQTY: Int) extends CaseClassRecord
+  val PS_AVAILQTY: Int)
