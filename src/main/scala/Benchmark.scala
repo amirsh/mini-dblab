@@ -42,4 +42,9 @@ class TPCHBenchmark {
   def q1_pr(): Unit = {
     Q1_pr(1)
   }
+
+  @Benchmark
+  def q1_sr(): Unit = {
+    Q1_pr(1)
+  }
 }

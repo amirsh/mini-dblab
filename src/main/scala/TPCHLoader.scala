@@ -1,5 +1,7 @@
 package dblab
 
+import records.Rec
+
 /**
  * A module that defines loaders for TPCH relations.
  */
@@ -31,7 +33,7 @@ object TPCHLoader {
 
   def loadLineitemPR() = loadTablePage(getTable("LINEITEM"))
 
-  def loadLineitemST() = loadTableGeneric[LINEITEMRecordST](getTable("LINEITEM"), values => 
+  def loadLineitemST() = loadTableGeneric(getTable("LINEITEM"), values => 
     new {
       val L_ORDERKEY: Int = values(0).asInstanceOf[Int]
       val L_PARTKEY: Int = values(1).asInstanceOf[Int]
@@ -50,6 +52,27 @@ object TPCHLoader {
       val L_SHIPMODE: OptimalString = values(14).asInstanceOf[OptimalString]
       val L_COMMENT: OptimalString = values(15).asInstanceOf[OptimalString]
     }
+  )
+
+  def loadLineitemSR() = loadTableGeneric(getTable("LINEITEM"), values => 
+    Rec(
+      "L_ORDERKEY" -> values(0).asInstanceOf[Int],
+      "L_PARTKEY" -> values(1).asInstanceOf[Int],
+      "L_SUPPKEY" -> values(2).asInstanceOf[Int],
+      "L_LINENUMBER" -> values(3).asInstanceOf[Int],
+      "L_QUANTITY" -> values(4).asInstanceOf[Double],
+      "L_EXTENDEDPRICE" -> values(5).asInstanceOf[Double],
+      "L_DISCOUNT" -> values(6).asInstanceOf[Double],
+      "L_TAX" -> values(7).asInstanceOf[Double],
+      "L_RETURNFLAG" -> values(8).asInstanceOf[Char],
+      "L_LINESTATUS" -> values(9).asInstanceOf[Char],
+      "L_SHIPDATE" -> values(10).asInstanceOf[Int],
+      "L_COMMITDATE" -> values(11).asInstanceOf[Int],
+      "L_RECEIPTDATE" -> values(12).asInstanceOf[Int],
+      "L_SHIPINSTRUCT" -> values(13).asInstanceOf[OptimalString],
+      "L_SHIPMODE" -> values(14).asInstanceOf[OptimalString],
+      "L_COMMENT" -> values(15).asInstanceOf[OptimalString]
+    )
   )
 
   type LINEITEMRecordST = {

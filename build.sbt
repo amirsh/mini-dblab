@@ -6,4 +6,6 @@ resolvers += Resolver.sonatypeRepo("snapshots")
 
 libraryDependencies += "org.scala-lang" %  "scala-reflect" % scala_version
 
+libraryDependencies += "ch.epfl.lamp" %% "scala-records" % "0.5-SNAPSHOT"
+
 enablePlugins(JmhPlugin)
