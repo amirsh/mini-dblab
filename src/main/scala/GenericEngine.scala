@@ -14,7 +14,14 @@ object GenericEngine {
     result
   }
   def runQuery[T](query: => T): T = {
-    time(query, "Query")
+    def run(f : () => T): T = 
+      if(!Config.printResult) Console.withOut(new java.io.PrintStream("out.txt")){ f() } else f()
+    run { () =>
+      if(Config.profile)
+        time(query, "Query")
+      else 
+        query
+    }
   }
 
   def dateToString(long: Int): String = long.toString

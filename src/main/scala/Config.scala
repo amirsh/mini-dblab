@@ -7,19 +7,12 @@ object Config {
   /** Specifies if the correctness of the results should be checked or not. */
   var checkResults = true
   /** Specifies the location of data files. */
-  var datapath: java.lang.String = null
+  var datapath: String = null
   /** Cache the loaded tables so that the same table is not loaded several times */
   val cacheLoading: Boolean = true
   /** Number of the repetitions of running a query */
   val numRuns: scala.Int = 1
   /** Specifies if the output should be printed or not */
-  val printResult = false
-  /** Specifies whether to obtain statistics during schema definition */
-  val gatherStats: Boolean = false
-  /** Specifies whether to show information about the query plan generation during execution */
-  val debugQueryPlan: Boolean = true
-  /** Specifies whether to specialize the loader or not */
-  var specializeLoader: Boolean = true
-  /** Specifies whether to specialize the query engine or not */
-  var specializeEngine: Boolean = true
+  var printResult = false
+  var profile: Boolean = false
 }

@@ -34,9 +34,13 @@ object Loader {
   // TODO
   // def loadTable[R](schema: Schema)(implicit t: TypeTag[R]): Array[R] = {
 
+  def isCached[T1: ClassTag](table: Table): Boolean = {
+    Config.cacheLoading && cachedTables.contains(table) && classTag[T1].runtimeClass == cachedTables(table)(0).getClass
+  }
+
   def loadUntypedTable(table: Table): Array[DynamicDataRow] = {
-    if (Config.cacheLoading && cachedTables.contains(table)) {
-      System.out.println(s"Loading cached ${table.name}!")
+    if (isCached[DynamicDataRow](table)) {
+      println(s"Loading cached ${table.name}!")
       cachedTables(table).asInstanceOf[Array[DynamicDataRow]]
     } else {
       val size = fileLineCount(table.resourceLocator)
@@ -57,7 +61,7 @@ object Loader {
             case DateType         => ldr.next_date
             case VarCharType(len) => loadString(len, ldr)
           })
-        val rec = new DynamicDataRow(table.name, table.attributes.map(_.name) zip values)
+        val rec = new DynamicDataRow(table.name, (table.attributes.map(_.name) zip values).toMap)
         arr(i) = rec
         i += 1
       }
@@ -71,8 +75,8 @@ object Loader {
   }
 
   def loadTablePage(table: Table): Array[PageRow] = {
-    if (Config.cacheLoading && cachedTables.contains(table)) {
-      System.out.println(s"Loading cached ${table.name}!")
+    if (isCached[PageRow](table)) {
+      println(s"Loading cached ${table.name}!")
       cachedTables(table).asInstanceOf[Array[PageRow]]
     } else {
       val size = fileLineCount(table.resourceLocator)
@@ -110,8 +114,8 @@ object Loader {
   }
 
   def loadTable[R](table: Table)(implicit c: ClassTag[R]): Array[R] = {
-    if (Config.cacheLoading && cachedTables.contains(table)) {
-      System.out.println(s"Loading cached ${table.name}!")
+    if (isCached[R](table)) {
+      println(s"Loading cached ${table.name}!")
       cachedTables(table).asInstanceOf[Array[R]]
     } else {
       val size = fileLineCount(table.resourceLocator)

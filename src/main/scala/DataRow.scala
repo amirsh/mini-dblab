@@ -3,8 +3,7 @@ package dblab
 /**
  * Represents a row in a database relation.
  */
-class DataRow(val values: Seq[(String, Any)]) extends Record {
-  private val fieldMap = collection.mutable.HashMap[String, Any](values: _*)
+class DataRow(val fieldMap: Map[String, Any]) extends Record {
   def numFields = fieldMap.size
   def getField(name: String): Option[Any] = fieldMap.get(name) match {
     case Some(fld) => Some(fld)
@@ -19,17 +18,12 @@ class DataRow(val values: Seq[(String, Any)]) extends Record {
       }
       res
   }
-  def setField(name: String, value: Any) {
-    if (!fieldMap.keySet.contains(name))
-      throw new Exception("Cannot insert new field " + name + " in DataRow after its creation (existing fields are " + fieldMap.keySet + ")")
-    fieldMap += name -> value
-  }
   def getFieldNames() = fieldMap.keySet
   def getNestedRecords(): Seq[DataRow] = fieldMap.map({ case (k, v) => v }).filter(_.isInstanceOf[DataRow]).toSeq.asInstanceOf[Seq[DataRow]]
   override def toString = "DataRow(" + fieldMap.toSeq.toString + ")"
-  override def hashCode: Int = values.map(_._2.hashCode).sum
+  override def hashCode: Int = fieldMap.map(_._2.hashCode).sum
   override def equals(o: Any): Boolean = o match {
-    case dr: DataRow => values.zip(dr.values).forall(x => x._1._1 == x._2._1 && x._1._2 == x._2._2)
+    case dr: DataRow => fieldMap.zip(dr.fieldMap).forall(x => x._1._1 == x._2._1 && x._1._2 == x._2._2)
     case _           => false
   }
 }
@@ -42,7 +36,7 @@ import scala.language.dynamics
  * For example, instead of accessing an attribute using `row.getField("attr").get` it uses
  * `row.attr[Int]`.
  */
-class DynamicDataRow(val className: String, override val values: Seq[(String, Any)]) extends DataRow(values) with Dynamic {
+class DynamicDataRow(val className: String, override val fieldMap: Map[String, Any]) extends DataRow(fieldMap) with Dynamic {
   def selectDynamic[T](key: String): T = {
     getField(key).getOrElse(sys.error(s"$this does not have $key field")).asInstanceOf[T]
   }
@@ -53,7 +47,7 @@ class DynamicDataRow(val className: String, override val values: Seq[(String, An
  */
 object DynamicDataRow {
   def apply(className: String)(values: (String, Any)*): DynamicDataRow =
-    new DynamicDataRow(className, values.toSeq)
+    new DynamicDataRow(className, values.toMap)
 }
 
 case class Page(table: Table) {

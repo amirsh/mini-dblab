@@ -9,7 +9,7 @@ object TPCHLoader {
   def getTable(tableName: String): Table = tpchSchema.tables.find(t => t.name == tableName).get
   def getScalingFactor: Double = Config.datapath.slice(Config.datapath.lastIndexOfSlice("sf") + 2, Config.datapath.length - 1).toDouble //TODO Pass SF to Config
 
-  import Loader.loadTable
+  import Loader.{ loadTable, loadUntypedTable }
 
   def loadRegion() = loadTable[REGIONRecord](getTable("REGION"))
 
@@ -26,6 +26,8 @@ object TPCHLoader {
   def loadOrders() = loadTable[ORDERSRecord](getTable("ORDERS"))
 
   def loadCustomer() = loadTable[CUSTOMERRecord](getTable("CUSTOMER"))
+
+  def loadLineitemDD() = loadUntypedTable(getTable("LINEITEM"))
 }
 
 case class LINEITEMRecord(

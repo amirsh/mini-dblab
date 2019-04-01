@@ -8,7 +8,7 @@ import TPCHLoader._
 import GenericEngine._
 
 object Queries {
-  def Q1_functional(numRuns: Int) {
+  def Q1(numRuns: Int) {
     val lineitemTable = Query(loadLineitem())
     for (i <- 0 until numRuns) {
       runQuery {
@@ -36,7 +36,35 @@ object Queries {
     }
   }
 
-  // def Q2_functional(numRuns: Int) {
+  def Q1_dr(numRuns: Int) {
+    val lineitemTable = Query(loadLineitemDD())
+    for (i <- 0 until numRuns) {
+      runQuery {
+        val constantDate: Int = parseDate("1998-09-02")
+        val result = lineitemTable.filter(_.L_SHIPDATE[Int] <= constantDate).groupBy(x => new Q1GRPRecord(
+          x.L_RETURNFLAG, x.L_LINESTATUS)).mapValues(l =>
+          Array(
+            l.map(_.L_DISCOUNT[Double]).sum,
+            l.map(_.L_QUANTITY[Double]).sum,
+            l.map(_.L_EXTENDEDPRICE[Double]).sum,
+            l.map(t => t.L_EXTENDEDPRICE[Double] * (1.0 - t.L_DISCOUNT[Double])).sum,
+            l.map(t => t.L_EXTENDEDPRICE[Double] * (1.0 - t.L_DISCOUNT[Double]) * (1.0 + t.L_TAX[Double])).sum,
+            l.count,
+            l.map(_.L_QUANTITY[Double]).avg,
+            l.map(_.L_EXTENDEDPRICE[Double]).avg,
+            l.map(_.L_DISCOUNT[Double]).avg))
+          .sortBy(t =>
+            t._1.L_RETURNFLAG.toInt * 128 + t._1.L_LINESTATUS.toInt)
+        result.printRows(kv => {
+          printf("%c|%c|%.2f|%.2f|%.2f|%.2f|%.2f|%.2f|%.2f|%.0f\n",
+            kv._1.L_RETURNFLAG, kv._1.L_LINESTATUS, kv._2.apply(1), kv._2.apply(2), kv._2.apply(3), kv._2.apply(4),
+            kv._2.apply(6), kv._2.apply(7), kv._2.apply(8), kv._2.apply(5))
+        }, -1)
+      }
+    }
+  }
+
+  // def Q2(numRuns: Int) {
   //   val partTable = loadPart()
   //   val partsuppTable = loadPartsupp()
   //   val nationTable = loadNation()
@@ -63,7 +91,7 @@ object Queries {
   //   }
   // }
 
-  // def Q3_functional(numRuns: Int) {
+  // def Q3(numRuns: Int) {
   //   val lineitemTable = loadLineitem()
   //   val ordersTable = loadOrders()
   //   val customerTable = loadCustomer()
@@ -85,7 +113,7 @@ object Queries {
   //   }
   // }
 
-  // def Q4_functional(numRuns: Int) {
+  // def Q4(numRuns: Int) {
   //   val lineitemTable = loadLineitem()
   //   val ordersTable = loadOrders()
   //   for (i <- 0 until numRuns) {
@@ -103,7 +131,7 @@ object Queries {
   //   }
   // }
 
-  // def Q5_functional(numRuns: Int) {
+  // def Q5(numRuns: Int) {
   //   val nationTable = loadNation()
   //   val regionTable = loadRegion()
   //   val supplierTable = loadSupplier()
@@ -148,7 +176,7 @@ object Queries {
   //   }
   // }
 
-  // def Q6_functional(numRuns: Int) {
+  // def Q6(numRuns: Int) {
   //   val lineitemTable = loadLineitem()
   //   for (i <- 0 until numRuns) {
   //     runQuery {
@@ -162,7 +190,7 @@ object Queries {
   //   }
   // }
 
-  // def Q9_functional(numRuns: Int) {
+  // def Q9(numRuns: Int) {
   //   val partTable = loadPart()
   //   val nationTable = loadNation()
   //   val ordersTable = loadOrders()
@@ -191,7 +219,7 @@ object Queries {
   //   }
   // }
 
-  // def Q10_functional(numRuns: Int) {
+  // def Q10(numRuns: Int) {
   //   val lineitemTable = loadLineitem()
   //   val nationTable = loadNation()
   //   val customerTable = loadCustomer()
@@ -222,7 +250,7 @@ object Queries {
   //   }
   // }
 
-  // def Q11_functional(numRuns: Int) {
+  // def Q11(numRuns: Int) {
   //   val partsuppTable = loadPartsupp()
   //   val supplierTable = loadSupplier()
   //   val nationTable = loadNation()
@@ -244,7 +272,7 @@ object Queries {
   //   }
   // }
 
-  // def Q12_functional(numRuns: Int) {
+  // def Q12(numRuns: Int) {
   //   val lineitemTable = loadLineitem()
   //   val ordersTable = loadOrders()
   //   for (i <- 0 until numRuns) {
@@ -278,7 +306,7 @@ object Queries {
   //   }
   // }
 
-  // def Q14_functional(numRuns: Int) {
+  // def Q14(numRuns: Int) {
   //   val lineitemTable = loadLineitem()
   //   val partTable = loadPart()
   //   for (i <- 0 until numRuns) {
@@ -307,7 +335,7 @@ object Queries {
   //   }
   // }
 
-  // def Q18_functional(numRuns: Int) {
+  // def Q18(numRuns: Int) {
   //   val lineitemTable = loadLineitem()
   //   val ordersTable = loadOrders()
   //   val customerTable = loadCustomer()
@@ -329,7 +357,7 @@ object Queries {
   //   }
   // }
 
-  // def Q19_functional(numRuns: Int) {
+  // def Q19(numRuns: Int) {
   //   val lineitemTable = loadLineitem()
   //   val partTable = loadPart()
   //   for (i <- 0 until numRuns) {
@@ -378,7 +406,7 @@ object Queries {
   //   }
   // }
 
-  // def Q20_functional(numRuns: Int) {
+  // def Q20(numRuns: Int) {
   //   val nationTable = loadNation()
   //   val supplierTable = loadSupplier()
   //   val partTable = loadPart()
