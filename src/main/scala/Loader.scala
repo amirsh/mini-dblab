@@ -35,7 +35,7 @@ object Loader {
   // def loadTable[R](schema: Schema)(implicit t: TypeTag[R]): Array[R] = {
 
   def isCached[T1: ClassTag](table: Table): Boolean = {
-    Config.cacheLoading && cachedTables.contains(table) && classTag[T1].runtimeClass == cachedTables(table)(0).getClass
+    Config.cacheLoading && cachedTables.contains(table)// && classTag[T1].runtimeClass == cachedTables(table)(0).getClass
   }
 
   def loadUntypedTable(table: Table): Array[DynamicDataRow] = {
@@ -110,6 +110,44 @@ object Loader {
       arr
     }
 
+    //TODO update statistics
+  }
+
+  def loadTableGeneric[R](table: Table, const: Seq[Any] => R)(implicit c: ClassTag[R]): Array[R] = {
+    if (isCached[R](table)) {
+      println(s"Loading cached ${table.name}!")
+      cachedTables(table).asInstanceOf[Array[R]]
+    } else {
+      val size = fileLineCount(table.resourceLocator)
+      val arr = new Array[R](size)
+      val ldr = new FastScanner(table.resourceLocator)
+
+      var i = 0
+
+      val argNames = table.attributes.map(_.name).toSeq
+
+      val page = Page(table)
+
+      while (i < size && ldr.hasNext()) {
+        val values = table.attributes.map(arg =>
+          arg.dataType match {
+            case IntType          => ldr.next_int
+            case DoubleType       => ldr.next_double
+            case DecimalType(_)   => ldr.next_double
+            case CharType         => ldr.next_char
+            case DateType         => ldr.next_date
+            case VarCharType(len) => loadString(len, ldr)
+          })
+
+        val rec = const(values.toSeq)
+        arr(i) = rec
+        i += 1
+      }
+      if (Config.cacheLoading) {
+        cachedTables(table) = arr
+      }
+      arr
+    }
     //TODO update statistics
   }
 

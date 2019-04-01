@@ -54,7 +54,7 @@ case class Page(table: Table) {
   val fieldId = table.attributes.map(_.name).zipWithIndex.toMap
 }
 
-case class PageRow(page: Page, rowId: Int, values: Array[Any]) extends Record {
+case class PageRow(page: Page, rowId: Int, values: Array[Any]) extends Record with Dynamic {
   def numFields = page.fieldId.size
   def getField(name: String): Option[Any] = page.fieldId.get(name) match {
     case Some(id) => Some(values(id))
@@ -65,5 +65,8 @@ case class PageRow(page: Page, rowId: Int, values: Array[Any]) extends Record {
   override def equals(o: Any): Boolean = o match {
     case pr: PageRow => pr.page.table == page.table && values.zip(pr.values).forall(x => x._1 == x._2)
     case _           => false
+  }
+  def selectDynamic[T](key: String): T = {
+    getField(key).getOrElse(sys.error(s"$this does not have $key field")).asInstanceOf[T]
   }
 }

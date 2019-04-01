@@ -12,9 +12,15 @@ import Queries._
 class TPCHBenchmark {
 
   @Setup
-  def prepare() : Unit = {
+  def prepare(): Unit = {
     Config.datapath = "data/sf0.1/"
-    loadLineitem()
+    // loadLineitem()
+  }
+
+  @TearDown
+  def clear(): Unit = {
+    Loader.cachedTables.clear()
+    println("TearDown!")
   }
 
   @Benchmark
@@ -25,5 +31,15 @@ class TPCHBenchmark {
   @Benchmark
   def q1_dr(): Unit = {
     Q1_dr(1)
+  }
+
+  @Benchmark
+  def q1_st(): Unit = {
+    Q1_st(1)
+  }
+
+  @Benchmark
+  def q1_pr(): Unit = {
+    Q1_pr(1)
   }
 }

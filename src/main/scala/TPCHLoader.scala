@@ -9,7 +9,7 @@ object TPCHLoader {
   def getTable(tableName: String): Table = tpchSchema.tables.find(t => t.name == tableName).get
   def getScalingFactor: Double = Config.datapath.slice(Config.datapath.lastIndexOfSlice("sf") + 2, Config.datapath.length - 1).toDouble //TODO Pass SF to Config
 
-  import Loader.{ loadTable, loadUntypedTable }
+  import Loader.{ loadTable, loadUntypedTable, loadTableGeneric, loadTablePage }
 
   def loadRegion() = loadTable[REGIONRecord](getTable("REGION"))
 
@@ -28,6 +28,48 @@ object TPCHLoader {
   def loadCustomer() = loadTable[CUSTOMERRecord](getTable("CUSTOMER"))
 
   def loadLineitemDD() = loadUntypedTable(getTable("LINEITEM"))
+
+  def loadLineitemPR() = loadTablePage(getTable("LINEITEM"))
+
+  def loadLineitemST() = loadTableGeneric[LINEITEMRecordST](getTable("LINEITEM"), values => 
+    new {
+      val L_ORDERKEY: Int = values(0).asInstanceOf[Int]
+      val L_PARTKEY: Int = values(1).asInstanceOf[Int]
+      val L_SUPPKEY: Int = values(2).asInstanceOf[Int]
+      val L_LINENUMBER: Int = values(3).asInstanceOf[Int]
+      val L_QUANTITY: Double = values(4).asInstanceOf[Double]
+      val L_EXTENDEDPRICE: Double = values(5).asInstanceOf[Double]
+      val L_DISCOUNT: Double = values(6).asInstanceOf[Double]
+      val L_TAX: Double = values(7).asInstanceOf[Double]
+      val L_RETURNFLAG: Char = values(8).asInstanceOf[Char]
+      val L_LINESTATUS: Char = values(9).asInstanceOf[Char]
+      val L_SHIPDATE: Int = values(10).asInstanceOf[Int]
+      val L_COMMITDATE: Int = values(11).asInstanceOf[Int]
+      val L_RECEIPTDATE: Int = values(12).asInstanceOf[Int]
+      val L_SHIPINSTRUCT: OptimalString = values(13).asInstanceOf[OptimalString]
+      val L_SHIPMODE: OptimalString = values(14).asInstanceOf[OptimalString]
+      val L_COMMENT: OptimalString = values(15).asInstanceOf[OptimalString]
+    }
+  )
+
+  type LINEITEMRecordST = {
+    val L_ORDERKEY: Int
+    val L_PARTKEY: Int
+    val L_SUPPKEY: Int
+    val L_LINENUMBER: Int
+    val L_QUANTITY: Double
+    val L_EXTENDEDPRICE: Double
+    val L_DISCOUNT: Double
+    val L_TAX: Double
+    val L_RETURNFLAG: Char
+    val L_LINESTATUS: Char
+    val L_SHIPDATE: Int
+    val L_COMMITDATE: Int
+    val L_RECEIPTDATE: Int
+    val L_SHIPINSTRUCT: OptimalString
+    val L_SHIPMODE: OptimalString
+    val L_COMMENT: OptimalString
+  }
 }
 
 case class LINEITEMRecord(

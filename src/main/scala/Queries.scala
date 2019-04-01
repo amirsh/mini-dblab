@@ -64,6 +64,62 @@ object Queries {
     }
   }
 
+  def Q1_pr(numRuns: Int) {
+    val lineitemTable = Query(loadLineitemPR())
+    for (i <- 0 until numRuns) {
+      runQuery {
+        val constantDate: Int = parseDate("1998-09-02")
+        val result = lineitemTable.filter(_.L_SHIPDATE[Int] <= constantDate).groupBy(x => new Q1GRPRecord(
+          x.L_RETURNFLAG, x.L_LINESTATUS)).mapValues(l =>
+          Array(
+            l.map(_.L_DISCOUNT[Double]).sum,
+            l.map(_.L_QUANTITY[Double]).sum,
+            l.map(_.L_EXTENDEDPRICE[Double]).sum,
+            l.map(t => t.L_EXTENDEDPRICE[Double] * (1.0 - t.L_DISCOUNT[Double])).sum,
+            l.map(t => t.L_EXTENDEDPRICE[Double] * (1.0 - t.L_DISCOUNT[Double]) * (1.0 + t.L_TAX[Double])).sum,
+            l.count,
+            l.map(_.L_QUANTITY[Double]).avg,
+            l.map(_.L_EXTENDEDPRICE[Double]).avg,
+            l.map(_.L_DISCOUNT[Double]).avg))
+          .sortBy(t =>
+            t._1.L_RETURNFLAG.toInt * 128 + t._1.L_LINESTATUS.toInt)
+        result.printRows(kv => {
+          printf("%c|%c|%.2f|%.2f|%.2f|%.2f|%.2f|%.2f|%.2f|%.0f\n",
+            kv._1.L_RETURNFLAG, kv._1.L_LINESTATUS, kv._2.apply(1), kv._2.apply(2), kv._2.apply(3), kv._2.apply(4),
+            kv._2.apply(6), kv._2.apply(7), kv._2.apply(8), kv._2.apply(5))
+        }, -1)
+      }
+    }
+  }
+
+  def Q1_st(numRuns: Int) {
+    val lineitemTable = Query(loadLineitemST())
+    for (i <- 0 until numRuns) {
+      runQuery {
+        val constantDate: Int = parseDate("1998-09-02")
+        val result = lineitemTable.filter(_.L_SHIPDATE <= constantDate).groupBy(x => new Q1GRPRecord(
+          x.L_RETURNFLAG, x.L_LINESTATUS)).mapValues(l =>
+          Array(
+            l.map(_.L_DISCOUNT).sum,
+            l.map(_.L_QUANTITY).sum,
+            l.map(_.L_EXTENDEDPRICE).sum,
+            l.map(t => t.L_EXTENDEDPRICE * (1.0 - t.L_DISCOUNT)).sum,
+            l.map(t => t.L_EXTENDEDPRICE * (1.0 - t.L_DISCOUNT) * (1.0 + t.L_TAX)).sum,
+            l.count,
+            l.map(_.L_QUANTITY).avg,
+            l.map(_.L_EXTENDEDPRICE).avg,
+            l.map(_.L_DISCOUNT).avg))
+          .sortBy(t =>
+            t._1.L_RETURNFLAG.toInt * 128 + t._1.L_LINESTATUS.toInt)
+        result.printRows(kv => {
+          printf("%c|%c|%.2f|%.2f|%.2f|%.2f|%.2f|%.2f|%.2f|%.0f\n",
+            kv._1.L_RETURNFLAG, kv._1.L_LINESTATUS, kv._2.apply(1), kv._2.apply(2), kv._2.apply(3), kv._2.apply(4),
+            kv._2.apply(6), kv._2.apply(7), kv._2.apply(8), kv._2.apply(5))
+        }, -1)
+      }
+    }
+  }
+
   // def Q2(numRuns: Int) {
   //   val partTable = loadPart()
   //   val partsuppTable = loadPartsupp()
