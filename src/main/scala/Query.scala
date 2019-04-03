@@ -83,6 +83,46 @@ class Query[T](private val underlying: List[T]) {
     }
     printf("(%d rows)\n", rows)
   }
+
+  def hashJoin[S, R](q2: Query[S])(leftHash: T => R)(rightHash: S => R)(joinCond: (T, S) => Boolean): Query[(T, S)] = {
+    val res = ArrayBuffer[(T, S)]()
+    val hm = MultiMap[R, T]
+    for (elem <- underlying) {
+      hm.addBinding(leftHash(elem), elem)
+    }
+    for (elem <- q2.getList) {
+      val k = rightHash(elem)
+      hm.get(k) foreach { tmpBuffer =>
+        var cnt = 0
+        tmpBuffer foreach { bufElem =>
+          if (joinCond(bufElem, elem)) {
+            res += bufElem -> elem
+            cnt += 1
+          }
+        }
+        if (cnt > 1) {
+          throw new Exception("This join is for the N-M case")
+        }
+      }
+    }
+    new Query(res.toList)
+  }
+
+  def leftHashSemiJoin[S, R](q2: Query[S])(leftHash: T => R)(rightHash: S => R)(joinCond: (T, S) => Boolean): Query[T] = {
+    val res = ArrayBuffer[T]()
+    val hm = MultiMap[R, S]
+    for (elem <- q2.getList) {
+      hm.addBinding(rightHash(elem), elem)
+    }
+    for (elem <- underlying) {
+      val k = leftHash(elem)
+      hm.get(k) foreach { tmpBuffer =>
+        if (tmpBuffer.exists(bufElem => joinCond(elem, bufElem)))
+          res += elem
+      }
+    }
+    new Query(res.toList)
+  }
 }
 
 object Query {
