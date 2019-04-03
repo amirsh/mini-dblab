@@ -999,3 +999,392 @@ void loadSupplier(numeric_int_t* count, struct SUPPLIERRecord** array) {
   *count = x6863;
   *array = x8307;
 }
+
+void loadOrders(numeric_int_t* count, struct ORDERSRecord** array) {
+  FILE* x3626 = popen("wc -l /Users/amirsh/Dropbox/sf0.1/sf1/orders.tbl", "r");
+  /* VAR */ numeric_int_t x3627 = 0;
+  numeric_int_t x3628 = x3627;
+  numeric_int_t* x3629 = &x3628;
+  numeric_int_t x3630 = fscanf(x3626, "%d", x3629);
+  pclose(x3626);
+  struct ORDERSRecord* x4929 = (struct ORDERSRecord*)malloc(x3628 * sizeof(struct ORDERSRecord));
+  memset(x4929, 0, x3628 * sizeof(struct ORDERSRecord));
+  numeric_int_t x3634 = O_RDONLY;
+  numeric_int_t x3635 = open("/Users/amirsh/Dropbox/sf0.1/sf1/orders.tbl", x3634);
+  struct stat x3446 = (struct stat){0};
+  /* VAR */ struct stat x3636 = x3446;
+  struct stat x3637 = x3636;
+  struct stat* x3638 = &x3637;
+  numeric_int_t x3639 = stat("/Users/amirsh/Dropbox/sf0.1/sf1/orders.tbl", x3638);
+  size_t x3640 = x3638->st_size;
+  numeric_int_t x3641 = PROT_READ;
+  numeric_int_t x3642 = MAP_PRIVATE;
+  char* x3643 = mmap(NULL, x3640, x3641, x3642, x3635, 0);
+  /* VAR */ char* x3644 = x3643;
+  char* x35 = x3644;
+  /* VAR */ numeric_int_t x36 = 0;
+  while(1) {
+    
+    numeric_int_t x37 = x36;
+    boolean_t x38 = x37<(x3628);
+    /* VAR */ boolean_t ite22161 = 0;
+    if(x38) {
+      char x25344 = *x35;
+      boolean_t x25345 = x25344!=('\0');
+      ite22161 = x25345;
+    } else {
+      
+      ite22161 = 0;
+    };
+    boolean_t x20684 = ite22161;
+    if (!(x20684)) break; 
+    
+    /* VAR */ numeric_int_t x3652 = 0;
+    numeric_int_t x3653 = x3652;
+    numeric_int_t* x3654 = &x3653;
+    char* x3655 = strntoi_unchecked(x35, x3654);
+    x35 = x3655;
+    /* VAR */ numeric_int_t x3657 = 0;
+    numeric_int_t x3658 = x3657;
+    numeric_int_t* x3659 = &x3658;
+    char* x3660 = strntoi_unchecked(x35, x3659);
+    x35 = x3660;
+    char x3662 = *x35;
+    /* VAR */ char x3663 = x3662;
+    x35 += 1;
+    x35 += 1;
+    char x3666 = x3663;
+    /* VAR */ double x3667 = 0.0;
+    double x3668 = x3667;
+    double* x3669 = &x3668;
+    char* x3670 = strntod_unchecked(x35, x3669);
+    x35 = x3670;
+    /* VAR */ numeric_int_t x3672 = 0;
+    numeric_int_t x3673 = x3672;
+    numeric_int_t* x3674 = &x3673;
+    char* x3675 = strntoi_unchecked(x35, x3674);
+    x35 = x3675;
+    /* VAR */ numeric_int_t x3677 = 0;
+    numeric_int_t x3678 = x3677;
+    numeric_int_t* x3679 = &x3678;
+    char* x3680 = strntoi_unchecked(x35, x3679);
+    x35 = x3680;
+    /* VAR */ numeric_int_t x3682 = 0;
+    numeric_int_t x3683 = x3682;
+    numeric_int_t* x3684 = &x3683;
+    char* x3685 = strntoi_unchecked(x35, x3684);
+    x35 = x3685;
+    numeric_int_t x3687 = x3673*(10000);
+    numeric_int_t x3688 = x3678*(100);
+    numeric_int_t x3689 = x3687+(x3688);
+    numeric_int_t x3690 = x3689+(x3683);
+    /* VAR */ char* x3691 = x35;
+    while(1) {
+      
+      char x3692 = *x35;
+      boolean_t x3693 = x3692!=('|');
+      /* VAR */ boolean_t ite22213 = 0;
+      if(x3693) {
+        char x25395 = *x35;
+        boolean_t x25396 = x25395!=('\n');
+        ite22213 = x25396;
+      } else {
+        
+        ite22213 = 0;
+      };
+      boolean_t x20729 = ite22213;
+      if (!(x20729)) break; 
+      
+      x35 += 1;
+    };
+    char* x3699 = x3691;
+    numeric_int_t x3700 = x35 - x3699;
+    numeric_int_t x3701 = x3700+(1);
+    char* x4999 = (char*)malloc(x3701 * sizeof(char));
+    memset(x4999, 0, x3701 * sizeof(char));
+    char* x3704 = x3691;
+    char* x3705 = strncpy(x4999, x3704, x3700);
+    x35 += 1;
+    /* VAR */ char* x3707 = x35;
+    while(1) {
+      
+      char x3708 = *x35;
+      boolean_t x3709 = x3708!=('|');
+      /* VAR */ boolean_t ite22234 = 0;
+      if(x3709) {
+        char x25415 = *x35;
+        boolean_t x25416 = x25415!=('\n');
+        ite22234 = x25416;
+      } else {
+        
+        ite22234 = 0;
+      };
+      boolean_t x20743 = ite22234;
+      if (!(x20743)) break; 
+      
+      x35 += 1;
+    };
+    char* x3715 = x3707;
+    numeric_int_t x3716 = x35 - x3715;
+    numeric_int_t x3717 = x3716+(1);
+    char* x5015 = (char*)malloc(x3717 * sizeof(char));
+    memset(x5015, 0, x3717 * sizeof(char));
+    char* x3720 = x3707;
+    char* x3721 = strncpy(x5015, x3720, x3716);
+    x35 += 1;
+    /* VAR */ numeric_int_t x3723 = 0;
+    numeric_int_t x3724 = x3723;
+    numeric_int_t* x3725 = &x3724;
+    char* x3726 = strntoi_unchecked(x35, x3725);
+    x35 = x3726;
+    /* VAR */ char* x3728 = x35;
+    while(1) {
+      
+      char x3729 = *x35;
+      boolean_t x3730 = x3729!=('|');
+      /* VAR */ boolean_t ite22260 = 0;
+      if(x3730) {
+        char x25440 = *x35;
+        boolean_t x25441 = x25440!=('\n');
+        ite22260 = x25441;
+      } else {
+        
+        ite22260 = 0;
+      };
+      boolean_t x20762 = ite22260;
+      if (!(x20762)) break; 
+      
+      x35 += 1;
+    };
+    char* x3736 = x3728;
+    numeric_int_t x3737 = x35 - x3736;
+    numeric_int_t x3738 = x3737+(1);
+    char* x5036 = (char*)malloc(x3738 * sizeof(char));
+    memset(x5036, 0, x3738 * sizeof(char));
+    char* x3741 = x3728;
+    char* x3742 = strncpy(x5036, x3741, x3737);
+    x35 += 1;
+    struct ORDERSRecord* x5699 = (struct ORDERSRecord*)malloc(1 * sizeof(struct ORDERSRecord));
+    memset(x5699, 0, 1 * sizeof(struct ORDERSRecord));
+    x5699->O_ORDERKEY = x3653; x5699->O_CUSTKEY = x3658; x5699->O_ORDERSTATUS = x3666; x5699->O_TOTALPRICE = x3668; x5699->O_ORDERDATE = x3690; x5699->O_ORDERPRIORITY = x4999; x5699->O_CLERK = x5015; x5699->O_SHIPPRIORITY = x3724; x5699->O_COMMENT = x5036;
+    numeric_int_t x51 = x36;
+    struct ORDERSRecord x5043 = *x5699;
+    *(x4929 + x51) = x5043;
+    struct ORDERSRecord* x5045 = &(x4929[x51]);
+    x5699 = x5045;
+    numeric_int_t x53 = x36;
+    numeric_int_t x54 = x53+(1);
+    x36 = x54;
+  };
+  char* x3751 = x3644;
+  munmap(x3751, x3640);
+  *count = x3628;
+  *array = x4929;
+}
+
+void loadCustomer(numeric_int_t* count, struct CUSTOMERRecord** array) {
+  FILE* x3752 = popen("wc -l /Users/amirsh/Dropbox/sf0.1/sf1/customer.tbl", "r");
+  /* VAR */ numeric_int_t x3753 = 0;
+  numeric_int_t x3754 = x3753;
+  numeric_int_t* x3755 = &x3754;
+  numeric_int_t x3756 = fscanf(x3752, "%d", x3755);
+  pclose(x3752);
+  struct CUSTOMERRecord* x5058 = (struct CUSTOMERRecord*)malloc(x3754 * sizeof(struct CUSTOMERRecord));
+  memset(x5058, 0, x3754 * sizeof(struct CUSTOMERRecord));
+  numeric_int_t x3760 = O_RDONLY;
+  numeric_int_t x3761 = open("/Users/amirsh/Dropbox/sf0.1/sf1/customer.tbl", x3760);
+  struct stat x3446 = (struct stat){0};
+  /* VAR */ struct stat x3762 = x3446;
+  struct stat x3763 = x3762;
+  struct stat* x3764 = &x3763;
+  numeric_int_t x3765 = stat("/Users/amirsh/Dropbox/sf0.1/sf1/customer.tbl", x3764);
+  size_t x3766 = x3764->st_size;
+  numeric_int_t x3767 = PROT_READ;
+  numeric_int_t x3768 = MAP_PRIVATE;
+  char* x3769 = mmap(NULL, x3766, x3767, x3768, x3761, 0);
+  /* VAR */ char* x3770 = x3769;
+  char* x60 = x3770;
+  /* VAR */ numeric_int_t x61 = 0;
+  while(1) {
+    
+    numeric_int_t x62 = x61;
+    boolean_t x63 = x62<(x3754);
+    /* VAR */ boolean_t ite22313 = 0;
+    if(x63) {
+      char x25492 = *x60;
+      boolean_t x25493 = x25492!=('\0');
+      ite22313 = x25493;
+    } else {
+      
+      ite22313 = 0;
+    };
+    boolean_t x20808 = ite22313;
+    if (!(x20808)) break; 
+    
+    /* VAR */ numeric_int_t x3778 = 0;
+    numeric_int_t x3779 = x3778;
+    numeric_int_t* x3780 = &x3779;
+    char* x3781 = strntoi_unchecked(x60, x3780);
+    x60 = x3781;
+    /* VAR */ char* x3783 = x60;
+    while(1) {
+      
+      char x3784 = *x60;
+      boolean_t x3785 = x3784!=('|');
+      /* VAR */ boolean_t ite22331 = 0;
+      if(x3785) {
+        char x25509 = *x60;
+        boolean_t x25510 = x25509!=('\n');
+        ite22331 = x25510;
+      } else {
+        
+        ite22331 = 0;
+      };
+      boolean_t x20819 = ite22331;
+      if (!(x20819)) break; 
+      
+      x60 += 1;
+    };
+    char* x3791 = x3783;
+    numeric_int_t x3792 = x60 - x3791;
+    numeric_int_t x3793 = x3792+(1);
+    char* x5094 = (char*)malloc(x3793 * sizeof(char));
+    memset(x5094, 0, x3793 * sizeof(char));
+    char* x3796 = x3783;
+    char* x3797 = strncpy(x5094, x3796, x3792);
+    x60 += 1;
+    /* VAR */ char* x3799 = x60;
+    while(1) {
+      
+      char x3800 = *x60;
+      boolean_t x3801 = x3800!=('|');
+      /* VAR */ boolean_t ite22352 = 0;
+      if(x3801) {
+        char x25529 = *x60;
+        boolean_t x25530 = x25529!=('\n');
+        ite22352 = x25530;
+      } else {
+        
+        ite22352 = 0;
+      };
+      boolean_t x20833 = ite22352;
+      if (!(x20833)) break; 
+      
+      x60 += 1;
+    };
+    char* x3807 = x3799;
+    numeric_int_t x3808 = x60 - x3807;
+    numeric_int_t x3809 = x3808+(1);
+    char* x5110 = (char*)malloc(x3809 * sizeof(char));
+    memset(x5110, 0, x3809 * sizeof(char));
+    char* x3812 = x3799;
+    char* x3813 = strncpy(x5110, x3812, x3808);
+    x60 += 1;
+    /* VAR */ numeric_int_t x3815 = 0;
+    numeric_int_t x3816 = x3815;
+    numeric_int_t* x3817 = &x3816;
+    char* x3818 = strntoi_unchecked(x60, x3817);
+    x60 = x3818;
+    /* VAR */ char* x3820 = x60;
+    while(1) {
+      
+      char x3821 = *x60;
+      boolean_t x3822 = x3821!=('|');
+      /* VAR */ boolean_t ite22378 = 0;
+      if(x3822) {
+        char x25554 = *x60;
+        boolean_t x25555 = x25554!=('\n');
+        ite22378 = x25555;
+      } else {
+        
+        ite22378 = 0;
+      };
+      boolean_t x20852 = ite22378;
+      if (!(x20852)) break; 
+      
+      x60 += 1;
+    };
+    char* x3828 = x3820;
+    numeric_int_t x3829 = x60 - x3828;
+    numeric_int_t x3830 = x3829+(1);
+    char* x5131 = (char*)malloc(x3830 * sizeof(char));
+    memset(x5131, 0, x3830 * sizeof(char));
+    char* x3833 = x3820;
+    char* x3834 = strncpy(x5131, x3833, x3829);
+    x60 += 1;
+    /* VAR */ double x3836 = 0.0;
+    double x3837 = x3836;
+    double* x3838 = &x3837;
+    char* x3839 = strntod_unchecked(x60, x3838);
+    x60 = x3839;
+    /* VAR */ char* x3841 = x60;
+    while(1) {
+      
+      char x3842 = *x60;
+      boolean_t x3843 = x3842!=('|');
+      /* VAR */ boolean_t ite22404 = 0;
+      if(x3843) {
+        char x25579 = *x60;
+        boolean_t x25580 = x25579!=('\n');
+        ite22404 = x25580;
+      } else {
+        
+        ite22404 = 0;
+      };
+      boolean_t x20871 = ite22404;
+      if (!(x20871)) break; 
+      
+      x60 += 1;
+    };
+    char* x3849 = x3841;
+    numeric_int_t x3850 = x60 - x3849;
+    numeric_int_t x3851 = x3850+(1);
+    char* x5152 = (char*)malloc(x3851 * sizeof(char));
+    memset(x5152, 0, x3851 * sizeof(char));
+    char* x3854 = x3841;
+    char* x3855 = strncpy(x5152, x3854, x3850);
+    x60 += 1;
+    /* VAR */ char* x3857 = x60;
+    while(1) {
+      
+      char x3858 = *x60;
+      boolean_t x3859 = x3858!=('|');
+      /* VAR */ boolean_t ite22425 = 0;
+      if(x3859) {
+        char x25599 = *x60;
+        boolean_t x25600 = x25599!=('\n');
+        ite22425 = x25600;
+      } else {
+        
+        ite22425 = 0;
+      };
+      boolean_t x20885 = ite22425;
+      if (!(x20885)) break; 
+      
+      x60 += 1;
+    };
+    char* x3865 = x3857;
+    numeric_int_t x3866 = x60 - x3865;
+    numeric_int_t x3867 = x3866+(1);
+    char* x5168 = (char*)malloc(x3867 * sizeof(char));
+    memset(x5168, 0, x3867 * sizeof(char));
+    char* x3870 = x3857;
+    char* x3871 = strncpy(x5168, x3870, x3866);
+    x60 += 1;
+    struct CUSTOMERRecord* x5833 = (struct CUSTOMERRecord*)malloc(1 * sizeof(struct CUSTOMERRecord));
+    memset(x5833, 0, 1 * sizeof(struct CUSTOMERRecord));
+    x5833->C_CUSTKEY = x3779; x5833->C_NAME = x5094; x5833->C_ADDRESS = x5110; x5833->C_NATIONKEY = x3816; x5833->C_PHONE = x5131; x5833->C_ACCTBAL = x3837; x5833->C_MKTSEGMENT = x5152; x5833->C_COMMENT = x5168;
+    numeric_int_t x75 = x61;
+    struct CUSTOMERRecord x5175 = *x5833;
+    *(x5058 + x75) = x5175;
+    struct CUSTOMERRecord* x5177 = &(x5058[x75]);
+    x5833 = x5177;
+    numeric_int_t x77 = x61;
+    numeric_int_t x78 = x77+(1);
+    x61 = x78;
+  };
+  char* x3880 = x3770;
+  munmap(x3880, x3766);
+  *count = x3754;
+  *array = x5058;
+}

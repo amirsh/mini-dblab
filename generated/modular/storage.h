@@ -69,6 +69,29 @@ struct REGIONRecord {
   char* R_COMMENT;
 };
 
+struct ORDERSRecord {
+  numeric_int_t O_ORDERKEY;
+  numeric_int_t O_CUSTKEY;
+  char O_ORDERSTATUS;
+  double O_TOTALPRICE;
+  numeric_int_t O_ORDERDATE;
+  char* O_ORDERPRIORITY;
+  char* O_CLERK;
+  numeric_int_t O_SHIPPRIORITY;
+  char* O_COMMENT;
+};
+
+struct CUSTOMERRecord {
+  numeric_int_t C_CUSTKEY;
+  char* C_NAME;
+  char* C_ADDRESS;
+  numeric_int_t C_NATIONKEY;
+  char* C_PHONE;
+  double C_ACCTBAL;
+  char* C_MKTSEGMENT;
+  char* C_COMMENT;
+};
+
 void loadLineitem(numeric_int_t* count, struct LINEITEMRecord** array);
 
 void loadPart(numeric_int_t* count, struct PARTRecord** array);
@@ -80,5 +103,9 @@ void loadNation(numeric_int_t* count, struct NATIONRecord** array);
 void loadRegion(numeric_int_t* count, struct REGIONRecord** array);
 
 void loadSupplier(numeric_int_t* count, struct SUPPLIERRecord** array);
+
+void loadOrders(numeric_int_t* count, struct ORDERSRecord** array);
+
+void loadCustomer(numeric_int_t* count, struct CUSTOMERRecord** array);
 
 #endif
