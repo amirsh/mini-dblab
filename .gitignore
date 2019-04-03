@@ -12,6 +12,12 @@ src_managed/
 project/boot/
 project/plugins/project/
 
+*.out
+*.o
+
+out.txt
+data
+
 # Scala-IDE specific
 .scala_dependencies
 .worksheet
