@@ -73,21 +73,21 @@ numeric_int_t x23264(struct WindowRecord_Int_Double* x309, struct WindowRecord_I
 numeric_int_t x9384(void* x9378, void* x9379, void* x9380);
 
 int main(int argc, char** argv) {
-  numeric_int_t* ps_count; 
-  struct PARTSUPPRecord** ps_array;
+  numeric_int_t x5496;
+  struct PARTSUPPRecord* x6446;
+  numeric_int_t* ps_count = &x5496; 
+  struct PARTSUPPRecord** ps_array = &x6446;
   loadPartsupp(ps_count, ps_array);
-  numeric_int_t x5496 = *ps_count;
-  struct PARTSUPPRecord* x6446 = *ps_array;
-  numeric_int_t* su_count;
-  struct SUPPLIERRecord** su_array;
+  numeric_int_t x5567;
+  struct SUPPLIERRecord* x6520;
+  numeric_int_t* su_count = &x5567;
+  struct SUPPLIERRecord** su_array = &x6520;
   loadSupplier(su_count, su_array);
-  numeric_int_t x5567 = *su_count;
-  struct SUPPLIERRecord* x6520 = *su_array;
-  numeric_int_t* na_count; 
-  struct NATIONRecord** na_array;
+  numeric_int_t x5680;
+  struct NATIONRecord* x6636;
+  numeric_int_t* na_count = &x5680; 
+  struct NATIONRecord** na_array = &x6636;
   loadNation(na_count, na_array);
-  numeric_int_t x5680 = *na_count;
-  struct NATIONRecord* x6636 = *na_array;
   numeric_int_t x66 = 0;
   for(; x66 < 1 ; x66 += 1) {
     

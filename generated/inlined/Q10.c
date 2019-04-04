@@ -138,7 +138,7 @@ numeric_int_t x36338(struct AGGRecord_Q10GRPRecord* x181, struct AGGRecord_Q10GR
 numeric_int_t x11839(void* x11833, void* x11834, void* x11835);
 
 int main(int argc, char** argv) {
-  FILE* x5911 = popen("wc -l /Users/amirsh/Dropbox/sf0.1/sf1/lineitem.tbl", "r");
+  FILE* x5911 = popen("wc -l ../../data/sf1/lineitem.tbl", "r");
   /* VAR */ numeric_int_t x5912 = 0;
   numeric_int_t x5913 = x5912;
   numeric_int_t* x5914 = &x5913;
@@ -147,12 +147,12 @@ int main(int argc, char** argv) {
   struct LINEITEMRecord* x7387 = (struct LINEITEMRecord*)malloc(x5913 * sizeof(struct LINEITEMRecord));
   memset(x7387, 0, x5913 * sizeof(struct LINEITEMRecord));
   numeric_int_t x5919 = O_RDONLY;
-  numeric_int_t x5920 = open("/Users/amirsh/Dropbox/sf0.1/sf1/lineitem.tbl", x5919);
+  numeric_int_t x5920 = open("../../data/sf1/lineitem.tbl", x5919);
   struct stat x5921 = (struct stat){0};
   /* VAR */ struct stat x5922 = x5921;
   struct stat x5923 = x5922;
   struct stat* x5924 = &x5923;
-  numeric_int_t x5925 = stat("/Users/amirsh/Dropbox/sf0.1/sf1/lineitem.tbl", x5924);
+  numeric_int_t x5925 = stat("../../data/sf1/lineitem.tbl", x5924);
   size_t x5926 = x5924->st_size;
   numeric_int_t x5927 = PROT_READ;
   numeric_int_t x5928 = MAP_PRIVATE;
@@ -378,7 +378,7 @@ int main(int argc, char** argv) {
   };
   char* x6100 = x5930;
   munmap(x6100, x5926);
-  FILE* x6101 = popen("wc -l /Users/amirsh/Dropbox/sf0.1/sf1/nation.tbl", "r");
+  FILE* x6101 = popen("wc -l ../../data/sf1/nation.tbl", "r");
   /* VAR */ numeric_int_t x6102 = 0;
   numeric_int_t x6103 = x6102;
   numeric_int_t* x6104 = &x6103;
@@ -387,11 +387,11 @@ int main(int argc, char** argv) {
   struct NATIONRecord* x7580 = (struct NATIONRecord*)malloc(x6103 * sizeof(struct NATIONRecord));
   memset(x7580, 0, x6103 * sizeof(struct NATIONRecord));
   numeric_int_t x6109 = O_RDONLY;
-  numeric_int_t x6110 = open("/Users/amirsh/Dropbox/sf0.1/sf1/nation.tbl", x6109);
+  numeric_int_t x6110 = open("../../data/sf1/nation.tbl", x6109);
   /* VAR */ struct stat x6111 = x5921;
   struct stat x6112 = x6111;
   struct stat* x6113 = &x6112;
-  numeric_int_t x6114 = stat("/Users/amirsh/Dropbox/sf0.1/sf1/nation.tbl", x6113);
+  numeric_int_t x6114 = stat("../../data/sf1/nation.tbl", x6113);
   size_t x6115 = x6113->st_size;
   numeric_int_t x6116 = PROT_READ;
   numeric_int_t x6117 = MAP_PRIVATE;
@@ -493,7 +493,7 @@ int main(int argc, char** argv) {
   };
   char* x6176 = x6119;
   munmap(x6176, x6115);
-  FILE* x6177 = popen("wc -l /Users/amirsh/Dropbox/sf0.1/sf1/customer.tbl", "r");
+  FILE* x6177 = popen("wc -l ../../data/sf1/customer.tbl", "r");
   /* VAR */ numeric_int_t x6178 = 0;
   numeric_int_t x6179 = x6178;
   numeric_int_t* x6180 = &x6179;
@@ -502,11 +502,11 @@ int main(int argc, char** argv) {
   struct CUSTOMERRecord* x7659 = (struct CUSTOMERRecord*)malloc(x6179 * sizeof(struct CUSTOMERRecord));
   memset(x7659, 0, x6179 * sizeof(struct CUSTOMERRecord));
   numeric_int_t x6185 = O_RDONLY;
-  numeric_int_t x6186 = open("/Users/amirsh/Dropbox/sf0.1/sf1/customer.tbl", x6185);
+  numeric_int_t x6186 = open("../../data/sf1/customer.tbl", x6185);
   /* VAR */ struct stat x6187 = x5921;
   struct stat x6188 = x6187;
   struct stat* x6189 = &x6188;
-  numeric_int_t x6190 = stat("/Users/amirsh/Dropbox/sf0.1/sf1/customer.tbl", x6189);
+  numeric_int_t x6190 = stat("../../data/sf1/customer.tbl", x6189);
   size_t x6191 = x6189->st_size;
   numeric_int_t x6192 = PROT_READ;
   numeric_int_t x6193 = MAP_PRIVATE;
@@ -694,7 +694,7 @@ int main(int argc, char** argv) {
   };
   char* x6305 = x6195;
   munmap(x6305, x6191);
-  FILE* x6306 = popen("wc -l /Users/amirsh/Dropbox/sf0.1/sf1/orders.tbl", "r");
+  FILE* x6306 = popen("wc -l ../../data/sf1/orders.tbl", "r");
   /* VAR */ numeric_int_t x6307 = 0;
   numeric_int_t x6308 = x6307;
   numeric_int_t* x6309 = &x6308;
@@ -703,11 +703,11 @@ int main(int argc, char** argv) {
   struct ORDERSRecord* x7791 = (struct ORDERSRecord*)malloc(x6308 * sizeof(struct ORDERSRecord));
   memset(x7791, 0, x6308 * sizeof(struct ORDERSRecord));
   numeric_int_t x6314 = O_RDONLY;
-  numeric_int_t x6315 = open("/Users/amirsh/Dropbox/sf0.1/sf1/orders.tbl", x6314);
+  numeric_int_t x6315 = open("../../data/sf1/orders.tbl", x6314);
   /* VAR */ struct stat x6316 = x5921;
   struct stat x6317 = x6316;
   struct stat* x6318 = &x6317;
-  numeric_int_t x6319 = stat("/Users/amirsh/Dropbox/sf0.1/sf1/orders.tbl", x6318);
+  numeric_int_t x6319 = stat("../../data/sf1/orders.tbl", x6318);
   size_t x6320 = x6318->st_size;
   numeric_int_t x6321 = PROT_READ;
   numeric_int_t x6322 = MAP_PRIVATE;

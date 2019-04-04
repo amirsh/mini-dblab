@@ -74,31 +74,31 @@ numeric_int_t x43252(struct WindowRecord_Int_DynamicCompositeRecord_REGIONRecord
 numeric_int_t x12885(void* x12879, void* x12880, void* x12881);
 
 int main(int argc, char** argv) {
-  numeric_int_t* pa_count; 
-  struct PARTRecord** pa_array;
+  numeric_int_t x6500;
+  struct PARTRecord* x7932;
+  numeric_int_t* pa_count = &x6500; 
+  struct PARTRecord** pa_array = &x7932;
   loadPart(pa_count, pa_array);
-  numeric_int_t x6500 = *pa_count;
-  struct PARTRecord* x7932 = *pa_array;
-  numeric_int_t* ps_count; 
-  struct PARTSUPPRecord** ps_array;
+  numeric_int_t x6646;
+  struct PARTSUPPRecord* x8081;
+  numeric_int_t* ps_count = &x6646; 
+  struct PARTSUPPRecord** ps_array = &x8081;
   loadPartsupp(ps_count, ps_array);
-  numeric_int_t x6646 = *ps_count;
-  struct PARTSUPPRecord* x8081 = *ps_array;
-  numeric_int_t* na_count; 
-  struct NATIONRecord** na_array;
+  numeric_int_t x6716;
+  struct NATIONRecord* x8154;
+  numeric_int_t* na_count = &x6716; 
+  struct NATIONRecord** na_array = &x8154;
   loadNation(na_count, na_array);
-  numeric_int_t x6716 = *na_count;
-  struct NATIONRecord* x8154 = *na_array;
-  numeric_int_t* re_count;
-  struct REGIONRecord** re_array;
+  numeric_int_t x6792;
+  struct REGIONRecord* x8233;
+  numeric_int_t* re_count = &x6792;
+  struct REGIONRecord** re_array = &x8233;
   loadRegion(re_count, re_array);
-  numeric_int_t x6792 = *re_count;
-  struct REGIONRecord* x8233 = *re_array;
-  numeric_int_t* su_count;
-  struct SUPPLIERRecord** su_array;
+  numeric_int_t x6863;
+  struct SUPPLIERRecord* x8307;
+  numeric_int_t* su_count = &x6863;
+  struct SUPPLIERRecord** su_array = &x8307;
   loadSupplier(su_count, su_array);
-  numeric_int_t x6863 = *su_count;
-  struct SUPPLIERRecord* x8307 = *su_array;
   numeric_int_t x110 = 0;
   for(; x110 < 1 ; x110 += 1) {
     

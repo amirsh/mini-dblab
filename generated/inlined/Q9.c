@@ -285,7 +285,7 @@ numeric_int_t x49056(struct AGGRecord_Q9GRPRecord* x250, struct AGGRecord_Q9GRPR
 numeric_int_t x15295(void* x15289, void* x15290, void* x15291);
 
 int main(int argc, char** argv) {
-  FILE* x6705 = popen("wc -l /Users/amirsh/Dropbox/sf0.1/sf1/part.tbl", "r");
+  FILE* x6705 = popen("wc -l ../../data/sf1/part.tbl", "r");
   /* VAR */ numeric_int_t x6706 = 0;
   numeric_int_t x6707 = x6706;
   numeric_int_t* x6708 = &x6707;
@@ -294,12 +294,12 @@ int main(int argc, char** argv) {
   struct PARTRecord* x8885 = (struct PARTRecord*)malloc(x6707 * sizeof(struct PARTRecord));
   memset(x8885, 0, x6707 * sizeof(struct PARTRecord));
   numeric_int_t x6713 = O_RDONLY;
-  numeric_int_t x6714 = open("/Users/amirsh/Dropbox/sf0.1/sf1/part.tbl", x6713);
+  numeric_int_t x6714 = open("../../data/sf1/part.tbl", x6713);
   struct stat x6715 = (struct stat){0};
   /* VAR */ struct stat x6716 = x6715;
   struct stat x6717 = x6716;
   struct stat* x6718 = &x6717;
-  numeric_int_t x6719 = stat("/Users/amirsh/Dropbox/sf0.1/sf1/part.tbl", x6718);
+  numeric_int_t x6719 = stat("../../data/sf1/part.tbl", x6718);
   size_t x6720 = x6718->st_size;
   numeric_int_t x6721 = PROT_READ;
   numeric_int_t x6722 = MAP_PRIVATE;
@@ -514,7 +514,7 @@ int main(int argc, char** argv) {
   };
   char* x6850 = x6724;
   munmap(x6850, x6720);
-  FILE* x6851 = popen("wc -l /Users/amirsh/Dropbox/sf0.1/sf1/nation.tbl", "r");
+  FILE* x6851 = popen("wc -l ../../data/sf1/nation.tbl", "r");
   /* VAR */ numeric_int_t x6852 = 0;
   numeric_int_t x6853 = x6852;
   numeric_int_t* x6854 = &x6853;
@@ -523,11 +523,11 @@ int main(int argc, char** argv) {
   struct NATIONRecord* x9034 = (struct NATIONRecord*)malloc(x6853 * sizeof(struct NATIONRecord));
   memset(x9034, 0, x6853 * sizeof(struct NATIONRecord));
   numeric_int_t x6859 = O_RDONLY;
-  numeric_int_t x6860 = open("/Users/amirsh/Dropbox/sf0.1/sf1/nation.tbl", x6859);
+  numeric_int_t x6860 = open("../../data/sf1/nation.tbl", x6859);
   /* VAR */ struct stat x6861 = x6715;
   struct stat x6862 = x6861;
   struct stat* x6863 = &x6862;
-  numeric_int_t x6864 = stat("/Users/amirsh/Dropbox/sf0.1/sf1/nation.tbl", x6863);
+  numeric_int_t x6864 = stat("../../data/sf1/nation.tbl", x6863);
   size_t x6865 = x6863->st_size;
   numeric_int_t x6866 = PROT_READ;
   numeric_int_t x6867 = MAP_PRIVATE;
@@ -629,7 +629,7 @@ int main(int argc, char** argv) {
   };
   char* x6926 = x6869;
   munmap(x6926, x6865);
-  FILE* x6927 = popen("wc -l /Users/amirsh/Dropbox/sf0.1/sf1/orders.tbl", "r");
+  FILE* x6927 = popen("wc -l ../../data/sf1/orders.tbl", "r");
   /* VAR */ numeric_int_t x6928 = 0;
   numeric_int_t x6929 = x6928;
   numeric_int_t* x6930 = &x6929;
@@ -638,11 +638,11 @@ int main(int argc, char** argv) {
   struct ORDERSRecord* x9113 = (struct ORDERSRecord*)malloc(x6929 * sizeof(struct ORDERSRecord));
   memset(x9113, 0, x6929 * sizeof(struct ORDERSRecord));
   numeric_int_t x6935 = O_RDONLY;
-  numeric_int_t x6936 = open("/Users/amirsh/Dropbox/sf0.1/sf1/orders.tbl", x6935);
+  numeric_int_t x6936 = open("../../data/sf1/orders.tbl", x6935);
   /* VAR */ struct stat x6937 = x6715;
   struct stat x6938 = x6937;
   struct stat* x6939 = &x6938;
-  numeric_int_t x6940 = stat("/Users/amirsh/Dropbox/sf0.1/sf1/orders.tbl", x6939);
+  numeric_int_t x6940 = stat("../../data/sf1/orders.tbl", x6939);
   size_t x6941 = x6939->st_size;
   numeric_int_t x6942 = PROT_READ;
   numeric_int_t x6943 = MAP_PRIVATE;
@@ -805,7 +805,7 @@ int main(int argc, char** argv) {
   };
   char* x7052 = x6945;
   munmap(x7052, x6941);
-  FILE* x7053 = popen("wc -l /Users/amirsh/Dropbox/sf0.1/sf1/partsupp.tbl", "r");
+  FILE* x7053 = popen("wc -l ../../data/sf1/partsupp.tbl", "r");
   /* VAR */ numeric_int_t x7054 = 0;
   numeric_int_t x7055 = x7054;
   numeric_int_t* x7056 = &x7055;
@@ -814,11 +814,11 @@ int main(int argc, char** argv) {
   struct PARTSUPPRecord* x9242 = (struct PARTSUPPRecord*)malloc(x7055 * sizeof(struct PARTSUPPRecord));
   memset(x9242, 0, x7055 * sizeof(struct PARTSUPPRecord));
   numeric_int_t x7061 = O_RDONLY;
-  numeric_int_t x7062 = open("/Users/amirsh/Dropbox/sf0.1/sf1/partsupp.tbl", x7061);
+  numeric_int_t x7062 = open("../../data/sf1/partsupp.tbl", x7061);
   /* VAR */ struct stat x7063 = x6715;
   struct stat x7064 = x7063;
   struct stat* x7065 = &x7064;
-  numeric_int_t x7066 = stat("/Users/amirsh/Dropbox/sf0.1/sf1/partsupp.tbl", x7065);
+  numeric_int_t x7066 = stat("../../data/sf1/partsupp.tbl", x7065);
   size_t x7067 = x7065->st_size;
   numeric_int_t x7068 = PROT_READ;
   numeric_int_t x7069 = MAP_PRIVATE;
@@ -903,7 +903,7 @@ int main(int argc, char** argv) {
   };
   char* x7122 = x7071;
   munmap(x7122, x7067);
-  FILE* x7123 = popen("wc -l /Users/amirsh/Dropbox/sf0.1/sf1/supplier.tbl", "r");
+  FILE* x7123 = popen("wc -l ../../data/sf1/supplier.tbl", "r");
   /* VAR */ numeric_int_t x7124 = 0;
   numeric_int_t x7125 = x7124;
   numeric_int_t* x7126 = &x7125;
@@ -912,11 +912,11 @@ int main(int argc, char** argv) {
   struct SUPPLIERRecord* x9315 = (struct SUPPLIERRecord*)malloc(x7125 * sizeof(struct SUPPLIERRecord));
   memset(x9315, 0, x7125 * sizeof(struct SUPPLIERRecord));
   numeric_int_t x7131 = O_RDONLY;
-  numeric_int_t x7132 = open("/Users/amirsh/Dropbox/sf0.1/sf1/supplier.tbl", x7131);
+  numeric_int_t x7132 = open("../../data/sf1/supplier.tbl", x7131);
   /* VAR */ struct stat x7133 = x6715;
   struct stat x7134 = x7133;
   struct stat* x7135 = &x7134;
-  numeric_int_t x7136 = stat("/Users/amirsh/Dropbox/sf0.1/sf1/supplier.tbl", x7135);
+  numeric_int_t x7136 = stat("../../data/sf1/supplier.tbl", x7135);
   size_t x7137 = x7135->st_size;
   numeric_int_t x7138 = PROT_READ;
   numeric_int_t x7139 = MAP_PRIVATE;
@@ -1077,7 +1077,7 @@ int main(int argc, char** argv) {
   };
   char* x7235 = x7141;
   munmap(x7235, x7137);
-  FILE* x7236 = popen("wc -l /Users/amirsh/Dropbox/sf0.1/sf1/lineitem.tbl", "r");
+  FILE* x7236 = popen("wc -l ../../data/sf1/lineitem.tbl", "r");
   /* VAR */ numeric_int_t x7237 = 0;
   numeric_int_t x7238 = x7237;
   numeric_int_t* x7239 = &x7238;
@@ -1086,11 +1086,11 @@ int main(int argc, char** argv) {
   struct LINEITEMRecord* x9431 = (struct LINEITEMRecord*)malloc(x7238 * sizeof(struct LINEITEMRecord));
   memset(x9431, 0, x7238 * sizeof(struct LINEITEMRecord));
   numeric_int_t x7244 = O_RDONLY;
-  numeric_int_t x7245 = open("/Users/amirsh/Dropbox/sf0.1/sf1/lineitem.tbl", x7244);
+  numeric_int_t x7245 = open("../../data/sf1/lineitem.tbl", x7244);
   /* VAR */ struct stat x7246 = x6715;
   struct stat x7247 = x7246;
   struct stat* x7248 = &x7247;
-  numeric_int_t x7249 = stat("/Users/amirsh/Dropbox/sf0.1/sf1/lineitem.tbl", x7248);
+  numeric_int_t x7249 = stat("../../data/sf1/lineitem.tbl", x7248);
   size_t x7250 = x7248->st_size;
   numeric_int_t x7251 = PROT_READ;
   numeric_int_t x7252 = MAP_PRIVATE;

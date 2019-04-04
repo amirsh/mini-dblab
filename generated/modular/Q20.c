@@ -117,31 +117,31 @@ numeric_int_t x36209(struct NATIONRecord_AGGRecord_Q20GRPRecord_SUPPLIERRecord* 
 numeric_int_t x11474(void* x11468, void* x11469, void* x11470);
 
 int main(int argc, char** argv) {
-  numeric_int_t* na_count; 
-  struct NATIONRecord** na_array;
+  numeric_int_t x4847;
+  struct NATIONRecord* x6543;
+  numeric_int_t* na_count = &x4847; 
+  struct NATIONRecord** na_array = &x6543;
   loadNation(na_count, na_array);
-  numeric_int_t x4847 = *na_count;
-  struct NATIONRecord* x6543 = *na_array;
-  numeric_int_t* su_count;
-  struct SUPPLIERRecord** su_array;
+  numeric_int_t x4924;
+  struct SUPPLIERRecord* x6623;
+  numeric_int_t* su_count = &x4924;
+  struct SUPPLIERRecord** su_array = &x6623;
   loadSupplier(su_count, su_array);
-  numeric_int_t x4924 = *su_count;
-  struct SUPPLIERRecord* x6623 = *su_array;
-  numeric_int_t* pa_count; 
-  struct PARTRecord** pa_array;
+  numeric_int_t x5037;
+  struct PARTRecord* x6739;
+  numeric_int_t* pa_count = &x5037; 
+  struct PARTRecord** pa_array = &x6739;
   loadPart(pa_count, pa_array);
-  numeric_int_t x5037 = *pa_count;
-  struct PARTRecord* x6739 = *pa_array;
-  numeric_int_t* ps_count; 
-  struct PARTSUPPRecord** ps_array;
+  numeric_int_t x5182;
+  struct PARTSUPPRecord* x6887;
+  numeric_int_t* ps_count = &x5182; 
+  struct PARTSUPPRecord** ps_array = &x6887;
   loadPartsupp(ps_count, ps_array);
-  numeric_int_t x5182 = *ps_count;
-  struct PARTSUPPRecord* x6887 = *ps_array;
-  numeric_int_t* li_count; 
-  struct LINEITEMRecord** li_array;
+  numeric_int_t x5252;
+  struct LINEITEMRecord* x6960;
+  numeric_int_t* li_count = &x5252; 
+  struct LINEITEMRecord** li_array = &x6960;
   loadLineitem(li_count, li_array);
-  numeric_int_t x5252 = *li_count;
-  struct LINEITEMRecord* x6960 = *li_array;
   numeric_int_t x123 = 0;
   for(; x123 < 1 ; x123 += 1) {
     

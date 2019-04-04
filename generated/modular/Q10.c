@@ -88,26 +88,26 @@ numeric_int_t x36338(struct AGGRecord_Q10GRPRecord* x181, struct AGGRecord_Q10GR
 numeric_int_t x11839(void* x11833, void* x11834, void* x11835);
 
 int main(int argc, char** argv) {
-  numeric_int_t* li_count; 
-  struct LINEITEMRecord** li_array;
+  numeric_int_t x5913;
+  struct LINEITEMRecord* x7387;
+  numeric_int_t* li_count = &x5913; 
+  struct LINEITEMRecord** li_array = &x7387;
   loadLineitem(li_count, li_array);
-  numeric_int_t x5913 = *li_count;
-  struct LINEITEMRecord* x7387 = *li_array;
-  numeric_int_t* na_count; 
-  struct NATIONRecord** na_array;
+  numeric_int_t x6103;
+  struct NATIONRecord* x7580;
+  numeric_int_t* na_count = &x6103; 
+  struct NATIONRecord** na_array = &x7580;
   loadNation(na_count, na_array);
-  numeric_int_t x6103 = *na_count;
-  struct NATIONRecord* x7580 = *na_array;
-  numeric_int_t* cu_count; 
-  struct CUSTOMERRecord** cu_array;
+  numeric_int_t x6179;
+  struct CUSTOMERRecord* x7659;
+  numeric_int_t* cu_count = &x6179; 
+  struct CUSTOMERRecord** cu_array = &x7659;
   loadCustomer(cu_count, cu_array);
-  numeric_int_t x6179 = *cu_count;
-  struct CUSTOMERRecord* x7659 = *cu_array;
-  numeric_int_t* or_count; 
-  struct ORDERSRecord** or_array;
+  numeric_int_t x6308;
+  struct ORDERSRecord* x7791;
+  numeric_int_t* or_count = &x6308; 
+  struct ORDERSRecord** or_array = &x7791;
   loadOrders(or_count, or_array);
-  numeric_int_t x6308 = *or_count;
-  struct ORDERSRecord* x7791 = *or_array;
   numeric_int_t x103 = 0;
   for(; x103 < 1 ; x103 += 1) {
     

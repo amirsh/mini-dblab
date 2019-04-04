@@ -28,11 +28,11 @@ numeric_int_t x11992(struct AGGRecord_Q1GRPRecord* x111, struct AGGRecord_Q1GRPR
 numeric_int_t x4241(void* x4235, void* x4236, void* x4237);
 
 int main(int argc, char** argv) {
-  numeric_int_t* li_count; 
-  struct LINEITEMRecord** li_array;
+  numeric_int_t x2214;
+  struct LINEITEMRecord* x2872;
+  numeric_int_t* li_count = &x2214; 
+  struct LINEITEMRecord** li_array = &x2872;
   loadLineitem(li_count, li_array);
-  numeric_int_t x2214 = *li_count;
-  struct LINEITEMRecord* x2872 = *li_array;
   numeric_int_t x34 = 0;
   for(; x34 < 1 ; x34 += 1) {
     

@@ -89,21 +89,21 @@ numeric_int_t x27471(struct AGGRecord_Q18GRPRecord* x150, struct AGGRecord_Q18GR
 numeric_int_t x8350(void* x8344, void* x8345, void* x8346);
 
 int main(int argc, char** argv) {
-  numeric_int_t* li_count; 
-  struct LINEITEMRecord** li_array;
+  numeric_int_t x3435;
+  struct LINEITEMRecord* x4717;
+  numeric_int_t* li_count = &x3435; 
+  struct LINEITEMRecord** li_array = &x4717;
   loadLineitem(li_count, li_array);
-  numeric_int_t x3435 = *li_count;
-  struct LINEITEMRecord* x4717 = *li_array;
-  numeric_int_t* or_count; 
-  struct ORDERSRecord** or_array;
+  numeric_int_t x3625;
+  struct ORDERSRecord* x4910;
+  numeric_int_t* or_count = &x3625; 
+  struct ORDERSRecord** or_array = &x4910;
   loadOrders(or_count, or_array);
-  numeric_int_t x3625 = *or_count;
-  struct ORDERSRecord* x4910 = *or_array;
-  numeric_int_t* cu_count; 
-  struct CUSTOMERRecord** cu_array;
+  numeric_int_t x3751;
+  struct CUSTOMERRecord* x5039;
+  numeric_int_t* cu_count = &x3751; 
+  struct CUSTOMERRecord** cu_array = &x5039;
   loadCustomer(cu_count, cu_array);
-  numeric_int_t x3751 = *cu_count;
-  struct CUSTOMERRecord* x5039 = *cu_array;
   numeric_int_t x83 = 0;
   for(; x83 < 1 ; x83 += 1) {
     

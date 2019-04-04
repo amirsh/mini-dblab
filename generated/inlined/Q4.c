@@ -58,7 +58,7 @@ numeric_int_t x14791(struct AGGRecord_OptimalString* x100, struct AGGRecord_Opti
 numeric_int_t x5134(void* x5128, void* x5129, void* x5130);
 
 int main(int argc, char** argv) {
-  FILE* x1998 = popen("wc -l /Users/amirsh/Dropbox/sf0.1/sf1/lineitem.tbl", "r");
+  FILE* x1998 = popen("wc -l ../../data/sf1/lineitem.tbl", "r");
   /* VAR */ numeric_int_t x1999 = 0;
   numeric_int_t x2000 = x1999;
   numeric_int_t* x2001 = &x2000;
@@ -67,12 +67,12 @@ int main(int argc, char** argv) {
   struct LINEITEMRecord* x2856 = (struct LINEITEMRecord*)malloc(x2000 * sizeof(struct LINEITEMRecord));
   memset(x2856, 0, x2000 * sizeof(struct LINEITEMRecord));
   numeric_int_t x2006 = O_RDONLY;
-  numeric_int_t x2007 = open("/Users/amirsh/Dropbox/sf0.1/sf1/lineitem.tbl", x2006);
+  numeric_int_t x2007 = open("../../data/sf1/lineitem.tbl", x2006);
   struct stat x2008 = (struct stat){0};
   /* VAR */ struct stat x2009 = x2008;
   struct stat x2010 = x2009;
   struct stat* x2011 = &x2010;
-  numeric_int_t x2012 = stat("/Users/amirsh/Dropbox/sf0.1/sf1/lineitem.tbl", x2011);
+  numeric_int_t x2012 = stat("../../data/sf1/lineitem.tbl", x2011);
   size_t x2013 = x2011->st_size;
   numeric_int_t x2014 = PROT_READ;
   numeric_int_t x2015 = MAP_PRIVATE;
@@ -298,7 +298,7 @@ int main(int argc, char** argv) {
   };
   char* x2187 = x2017;
   munmap(x2187, x2013);
-  FILE* x2188 = popen("wc -l /Users/amirsh/Dropbox/sf0.1/sf1/orders.tbl", "r");
+  FILE* x2188 = popen("wc -l ../../data/sf1/orders.tbl", "r");
   /* VAR */ numeric_int_t x2189 = 0;
   numeric_int_t x2190 = x2189;
   numeric_int_t* x2191 = &x2190;
@@ -307,11 +307,11 @@ int main(int argc, char** argv) {
   struct ORDERSRecord* x3049 = (struct ORDERSRecord*)malloc(x2190 * sizeof(struct ORDERSRecord));
   memset(x3049, 0, x2190 * sizeof(struct ORDERSRecord));
   numeric_int_t x2196 = O_RDONLY;
-  numeric_int_t x2197 = open("/Users/amirsh/Dropbox/sf0.1/sf1/orders.tbl", x2196);
+  numeric_int_t x2197 = open("../../data/sf1/orders.tbl", x2196);
   /* VAR */ struct stat x2198 = x2008;
   struct stat x2199 = x2198;
   struct stat* x2200 = &x2199;
-  numeric_int_t x2201 = stat("/Users/amirsh/Dropbox/sf0.1/sf1/orders.tbl", x2200);
+  numeric_int_t x2201 = stat("../../data/sf1/orders.tbl", x2200);
   size_t x2202 = x2200->st_size;
   numeric_int_t x2203 = PROT_READ;
   numeric_int_t x2204 = MAP_PRIVATE;

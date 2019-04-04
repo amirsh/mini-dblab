@@ -79,7 +79,7 @@ numeric_int_t x26053(void* x7297);
 numeric_int_t x26056(void* x7300, void* x7301);
 
 int main(int argc, char** argv) {
-  FILE* x4605 = popen("wc -l /Users/amirsh/Dropbox/sf0.1/sf1/lineitem.tbl", "r");
+  FILE* x4605 = popen("wc -l ../../data/sf1/lineitem.tbl", "r");
   /* VAR */ numeric_int_t x4606 = 0;
   numeric_int_t x4607 = x4606;
   numeric_int_t* x4608 = &x4607;
@@ -88,12 +88,12 @@ int main(int argc, char** argv) {
   struct LINEITEMRecord* x5771 = (struct LINEITEMRecord*)malloc(x4607 * sizeof(struct LINEITEMRecord));
   memset(x5771, 0, x4607 * sizeof(struct LINEITEMRecord));
   numeric_int_t x4613 = O_RDONLY;
-  numeric_int_t x4614 = open("/Users/amirsh/Dropbox/sf0.1/sf1/lineitem.tbl", x4613);
+  numeric_int_t x4614 = open("../../data/sf1/lineitem.tbl", x4613);
   struct stat x4615 = (struct stat){0};
   /* VAR */ struct stat x4616 = x4615;
   struct stat x4617 = x4616;
   struct stat* x4618 = &x4617;
-  numeric_int_t x4619 = stat("/Users/amirsh/Dropbox/sf0.1/sf1/lineitem.tbl", x4618);
+  numeric_int_t x4619 = stat("../../data/sf1/lineitem.tbl", x4618);
   size_t x4620 = x4618->st_size;
   numeric_int_t x4621 = PROT_READ;
   numeric_int_t x4622 = MAP_PRIVATE;
@@ -319,7 +319,7 @@ int main(int argc, char** argv) {
   };
   char* x4794 = x4624;
   munmap(x4794, x4620);
-  FILE* x4795 = popen("wc -l /Users/amirsh/Dropbox/sf0.1/sf1/part.tbl", "r");
+  FILE* x4795 = popen("wc -l ../../data/sf1/part.tbl", "r");
   /* VAR */ numeric_int_t x4796 = 0;
   numeric_int_t x4797 = x4796;
   numeric_int_t* x4798 = &x4797;
@@ -328,11 +328,11 @@ int main(int argc, char** argv) {
   struct PARTRecord* x5964 = (struct PARTRecord*)malloc(x4797 * sizeof(struct PARTRecord));
   memset(x5964, 0, x4797 * sizeof(struct PARTRecord));
   numeric_int_t x4803 = O_RDONLY;
-  numeric_int_t x4804 = open("/Users/amirsh/Dropbox/sf0.1/sf1/part.tbl", x4803);
+  numeric_int_t x4804 = open("../../data/sf1/part.tbl", x4803);
   /* VAR */ struct stat x4805 = x4615;
   struct stat x4806 = x4805;
   struct stat* x4807 = &x4806;
-  numeric_int_t x4808 = stat("/Users/amirsh/Dropbox/sf0.1/sf1/part.tbl", x4807);
+  numeric_int_t x4808 = stat("../../data/sf1/part.tbl", x4807);
   size_t x4809 = x4807->st_size;
   numeric_int_t x4810 = PROT_READ;
   numeric_int_t x4811 = MAP_PRIVATE;

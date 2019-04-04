@@ -12,11 +12,11 @@ struct AGGRecord_String {
 };
 
 int main(int argc, char** argv) {
-  numeric_int_t* li_count; 
-  struct LINEITEMRecord** li_array;
+  numeric_int_t x1295;
+  struct LINEITEMRecord* x1845;
+  numeric_int_t* li_count = &x1295; 
+  struct LINEITEMRecord** li_array = &x1845;
   loadLineitem(li_count, li_array);
-  numeric_int_t x1295 = *li_count;
-  struct LINEITEMRecord* x1845 = *li_array;
   numeric_int_t x34 = 0;
   for(; x34 < 1 ; x34 += 1) {
     

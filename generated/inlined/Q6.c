@@ -33,7 +33,7 @@ struct LINEITEMRecord {
 
 
 int main(int argc, char** argv) {
-  FILE* x1293 = popen("wc -l /Users/amirsh/Dropbox/sf0.1/sf1/lineitem.tbl", "r");
+  FILE* x1293 = popen("wc -l ../../data/sf1/lineitem.tbl", "r");
   /* VAR */ numeric_int_t x1294 = 0;
   numeric_int_t x1295 = x1294;
   numeric_int_t* x1296 = &x1295;
@@ -42,12 +42,12 @@ int main(int argc, char** argv) {
   struct LINEITEMRecord* x1845 = (struct LINEITEMRecord*)malloc(x1295 * sizeof(struct LINEITEMRecord));
   memset(x1845, 0, x1295 * sizeof(struct LINEITEMRecord));
   numeric_int_t x1301 = O_RDONLY;
-  numeric_int_t x1302 = open("/Users/amirsh/Dropbox/sf0.1/sf1/lineitem.tbl", x1301);
+  numeric_int_t x1302 = open("../../data/sf1/lineitem.tbl", x1301);
   struct stat x1303 = (struct stat){0};
   /* VAR */ struct stat x1304 = x1303;
   struct stat x1305 = x1304;
   struct stat* x1306 = &x1305;
-  numeric_int_t x1307 = stat("/Users/amirsh/Dropbox/sf0.1/sf1/lineitem.tbl", x1306);
+  numeric_int_t x1307 = stat("../../data/sf1/lineitem.tbl", x1306);
   size_t x1308 = x1306->st_size;
   numeric_int_t x1309 = PROT_READ;
   numeric_int_t x1310 = MAP_PRIVATE;

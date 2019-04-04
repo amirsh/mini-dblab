@@ -47,7 +47,7 @@ numeric_int_t x11992(struct AGGRecord_Q1GRPRecord* x111, struct AGGRecord_Q1GRPR
 numeric_int_t x4241(void* x4235, void* x4236, void* x4237);
 
 int main(int argc, char** argv) {
-  FILE* x2212 = popen("wc -l /Users/amirsh/Dropbox/sf0.1/sf1/lineitem.tbl", "r");
+  FILE* x2212 = popen("wc -l ../../data/sf1/lineitem.tbl", "r");
   /* VAR */ numeric_int_t x2213 = 0;
   numeric_int_t x2214 = x2213;
   numeric_int_t* x2215 = &x2214;
@@ -56,12 +56,12 @@ int main(int argc, char** argv) {
   struct LINEITEMRecord* x2872 = (struct LINEITEMRecord*)malloc(x2214 * sizeof(struct LINEITEMRecord));
   memset(x2872, 0, x2214 * sizeof(struct LINEITEMRecord));
   numeric_int_t x2220 = O_RDONLY;
-  numeric_int_t x2221 = open("/Users/amirsh/Dropbox/sf0.1/sf1/lineitem.tbl", x2220);
+  numeric_int_t x2221 = open("../../data/sf1/lineitem.tbl", x2220);
   struct stat x2222 = (struct stat){0};
   /* VAR */ struct stat x2223 = x2222;
   struct stat x2224 = x2223;
   struct stat* x2225 = &x2224;
-  numeric_int_t x2226 = stat("/Users/amirsh/Dropbox/sf0.1/sf1/lineitem.tbl", x2225);
+  numeric_int_t x2226 = stat("../../data/sf1/lineitem.tbl", x2225);
   size_t x2227 = x2225->st_size;
   numeric_int_t x2228 = PROT_READ;
   numeric_int_t x2229 = MAP_PRIVATE;

@@ -47,16 +47,16 @@ numeric_int_t x15307(void* x4921);
 numeric_int_t x15310(void* x4924, void* x4925);
 
 int main(int argc, char** argv) {
-  numeric_int_t* li_count; 
-  struct LINEITEMRecord** li_array;
+  numeric_int_t x2639;
+  struct LINEITEMRecord* x3599;
+  numeric_int_t* li_count = &x2639; 
+  struct LINEITEMRecord** li_array = &x3599;
   loadLineitem(li_count, li_array);
-  numeric_int_t x2639 = *li_count;
-  struct LINEITEMRecord* x3599 = *li_array;
-  numeric_int_t* pa_count; 
-  struct PARTRecord** pa_array;
+  numeric_int_t x2829;
+  struct PARTRecord* x3792;
+  numeric_int_t* pa_count = &x2829; 
+  struct PARTRecord** pa_array = &x3792;
   loadPart(pa_count, pa_array);
-  numeric_int_t x2829 = *pa_count;
-  struct PARTRecord* x3792 = *pa_array;
   numeric_int_t x59 = 0;
   for(; x59 < 1 ; x59 += 1) {
     

@@ -56,16 +56,16 @@ numeric_int_t x19710(struct AGGRecord_OptimalString* x131, struct AGGRecord_Opti
 numeric_int_t x6353(void* x6347, void* x6348, void* x6349);
 
 int main(int argc, char** argv) {
-  numeric_int_t* li_count; 
-  struct LINEITEMRecord** li_array;
+  numeric_int_t x2799;
+  struct LINEITEMRecord* x3755;
+  numeric_int_t* li_count = &x2799; 
+  struct LINEITEMRecord** li_array = &x3755;
   loadLineitem(li_count, li_array);
-  numeric_int_t x2799 = *li_count;
-  struct LINEITEMRecord* x3755 = *li_array;
-  numeric_int_t* or_count; 
-  struct ORDERSRecord** or_array;
+  numeric_int_t x2989;
+  struct ORDERSRecord* x3948;
+  numeric_int_t* or_count = &x2989; 
+  struct ORDERSRecord** or_array = &x3948;
   loadOrders(or_count, or_array);
-  numeric_int_t x2989 = *or_count;
-  struct ORDERSRecord* x3948 = *or_array;
   numeric_int_t x59 = 0;
   for(; x59 < 1 ; x59 += 1) {
     
