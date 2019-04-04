@@ -197,23 +197,59 @@ object Queries {
   //   }
   // }
 
-  // def Q4(numRuns: Int) {
-  //   val lineitemTable = loadLineitem()
-  //   val ordersTable = loadOrders()
-  //   for (i <- 0 until numRuns) {
-  //     runQuery({
-  //       val constantDate1: Int = parseDate("1993-11-01")
-  //       val constantDate2: Int = parseDate("1993-08-01")
-  //       val scanOrders = Query(ordersTable).filter(x => x.O_ORDERDATE < constantDate1 && x.O_ORDERDATE >= constantDate2)
-  //       val scanLineitem = Query(lineitemTable).filter(x => x.L_COMMITDATE < x.L_RECEIPTDATE)
-  //       val hj = scanOrders.leftHashSemiJoin(scanLineitem)(x => x.O_ORDERKEY)(x => x.L_ORDERKEY)((x, y) => x.O_ORDERKEY == y.L_ORDERKEY)
-  //       val aggRes = hj.groupBy(x => x.O_ORDERPRIORITY).mapValues(_.count)
-  //       val sortOp = aggRes.sortBy(_._1.string)
-  //       sortOp.printRows(kv =>
-  //         printf("%s|%d\n", kv._1.string, kv._2), -1)
-  //     })
-  //   }
-  // }
+  def Q4(numRuns: Int) {
+    val lineitemTable = loadLineitem()
+    val ordersTable = loadOrders()
+    for (i <- 0 until numRuns) {
+      runQuery({
+        val constantDate1: Int = parseDate("1993-11-01")
+        val constantDate2: Int = parseDate("1993-08-01")
+        val scanOrders = Query(ordersTable).filter(x => x.O_ORDERDATE < constantDate1 && x.O_ORDERDATE >= constantDate2)
+        val scanLineitem = Query(lineitemTable).filter(x => x.L_COMMITDATE < x.L_RECEIPTDATE)
+        val hj = scanOrders.leftHashSemiJoin(scanLineitem)(x => x.O_ORDERKEY)(x => x.L_ORDERKEY)((x, y) => x.O_ORDERKEY == y.L_ORDERKEY)
+        val aggRes = hj.groupBy(x => x.O_ORDERPRIORITY).mapValues(_.count)
+        val sortOp = aggRes.sortBy(_._1.string)
+        sortOp.printRows(kv =>
+          printf("%s|%d\n", kv._1.string, kv._2), -1)
+      })
+    }
+  }
+
+  def Q4_st(numRuns: Int) {
+    val lineitemTable = loadLineitemST()
+    val ordersTable = loadOrdersST()
+    for (i <- 0 until numRuns) {
+      runQuery({
+        val constantDate1: Int = parseDate("1993-11-01")
+        val constantDate2: Int = parseDate("1993-08-01")
+        val scanOrders = Query(ordersTable).filter(x => x.O_ORDERDATE < constantDate1 && x.O_ORDERDATE >= constantDate2)
+        val scanLineitem = Query(lineitemTable).filter(x => x.L_COMMITDATE < x.L_RECEIPTDATE)
+        val hj = scanOrders.leftHashSemiJoin(scanLineitem)(x => x.O_ORDERKEY)(x => x.L_ORDERKEY)((x, y) => x.O_ORDERKEY == y.L_ORDERKEY)
+        val aggRes = hj.groupBy(x => x.O_ORDERPRIORITY).mapValues(_.count)
+        val sortOp = aggRes.sortBy(_._1.string)
+        sortOp.printRows(kv =>
+          printf("%s|%d\n", kv._1.string, kv._2), -1)
+      })
+    }
+  }
+
+  def Q4_sr(numRuns: Int) {
+    val lineitemTable = loadLineitemSR()
+    val ordersTable = loadOrdersSR()
+    for (i <- 0 until numRuns) {
+      runQuery({
+        val constantDate1: Int = parseDate("1993-11-01")
+        val constantDate2: Int = parseDate("1993-08-01")
+        val scanOrders = Query(ordersTable).filter(x => x.O_ORDERDATE < constantDate1 && x.O_ORDERDATE >= constantDate2)
+        val scanLineitem = Query(lineitemTable).filter(x => x.L_COMMITDATE < x.L_RECEIPTDATE)
+        val hj = scanOrders.leftHashSemiJoin(scanLineitem)(x => x.O_ORDERKEY)(x => x.L_ORDERKEY)((x, y) => x.O_ORDERKEY == y.L_ORDERKEY)
+        val aggRes = hj.groupBy(x => x.O_ORDERPRIORITY).mapValues(_.count)
+        val sortOp = aggRes.sortBy(_._1.string)
+        sortOp.printRows(kv =>
+          printf("%s|%d\n", kv._1.string, kv._2), -1)
+      })
+    }
+  }
 
   // def Q5(numRuns: Int) {
   //   val nationTable = loadNation()
@@ -356,39 +392,80 @@ object Queries {
   //   }
   // }
 
-  // def Q12(numRuns: Int) {
-  //   val lineitemTable = loadLineitem()
-  //   val ordersTable = loadOrders()
-  //   for (i <- 0 until numRuns) {
-  //     runQuery({
-  //       val mail = parseString("MAIL")
-  //       val ship = parseString("SHIP")
-  //       val constantDate = parseDate("1995-01-01")
-  //       val constantDate2 = parseDate("1994-01-01")
-  //       val so2 = Query(lineitemTable).filter(x =>
-  //         x.L_RECEIPTDATE < constantDate && x.L_COMMITDATE < constantDate && x.L_SHIPDATE < constantDate && x.L_SHIPDATE < x.L_COMMITDATE && x.L_COMMITDATE < x.L_RECEIPTDATE && x.L_RECEIPTDATE >= constantDate2 && (x.L_SHIPMODE === mail || x.L_SHIPMODE === ship))
-  //       val jo = Query(ordersTable).hashJoin(so2)(x => x.O_ORDERKEY)(x => x.L_ORDERKEY)((x, y) => x.O_ORDERKEY == y.L_ORDERKEY)
-  //       val URGENT = parseString("1-URGENT")
-  //       val HIGH = parseString("2-HIGH")
-  //       val aggOp = jo.groupBy(x => x.L_SHIPMODE[OptimalString]).mapValues(list => {
-  //         Array(list.filter(t => t.O_ORDERPRIORITY[OptimalString] === URGENT || t.O_ORDERPRIORITY[OptimalString] === HIGH).count,
-  //           list.filter(t => t.O_ORDERPRIORITY[OptimalString] =!= URGENT && t.O_ORDERPRIORITY[OptimalString] =!= HIGH).count)
-  //         // var x0 = 0
-  //         // var x1 = 0
-  //         // list.foreach { t =>
-  //         //   if (t.O_ORDERPRIORITY[OptimalString] === URGENT || t.O_ORDERPRIORITY[OptimalString] === HIGH)
-  //         //     x0 += 1
-  //         //   if (t.O_ORDERPRIORITY[OptimalString] =!= URGENT && t.O_ORDERPRIORITY[OptimalString] =!= HIGH)
-  //         //     x1 += 1
-  //         // }
-  //         // Array(x0, x1)
-  //       })
-  //       val sortOp = aggOp.sortBy(_._1.string)
-  //       sortOp.printRows(kv =>
-  //         printf("%s|%d|%d\n", kv._1.string, kv._2(0), kv._2(1)), -1)
-  //     })
-  //   }
-  // }
+  def Q12(numRuns: Int) {
+    val lineitemTable = loadLineitem()
+    val ordersTable = loadOrders()
+    for (i <- 0 until numRuns) {
+      runQuery({
+        val mail = parseString("MAIL")
+        val ship = parseString("SHIP")
+        val constantDate = parseDate("1995-01-01")
+        val constantDate2 = parseDate("1994-01-01")
+        val so2 = Query(lineitemTable).filter(x =>
+          x.L_RECEIPTDATE < constantDate && x.L_COMMITDATE < constantDate && x.L_SHIPDATE < constantDate && x.L_SHIPDATE < x.L_COMMITDATE && x.L_COMMITDATE < x.L_RECEIPTDATE && x.L_RECEIPTDATE >= constantDate2 && (x.L_SHIPMODE === mail || x.L_SHIPMODE === ship))
+        val jo = Query(ordersTable).hashJoin(so2)(x => x.O_ORDERKEY)(x => x.L_ORDERKEY)((x, y) => x.O_ORDERKEY == y.L_ORDERKEY)
+        val URGENT = parseString("1-URGENT")
+        val HIGH = parseString("2-HIGH")
+        val aggOp = jo.groupBy(x => x._2.L_SHIPMODE).mapValues(list => {
+          Array(list.filter(t => t._1.O_ORDERPRIORITY === URGENT || t._1.O_ORDERPRIORITY === HIGH).count,
+            list.filter(t => t._1.O_ORDERPRIORITY =!= URGENT && t._1.O_ORDERPRIORITY =!= HIGH).count)
+        })
+        val sortOp = aggOp.sortBy(_._1.string)
+        sortOp.printRows(kv =>
+          printf("%s|%d|%d\n", kv._1.string, kv._2(0), kv._2(1)), -1)
+      })
+    }
+  }
+
+  def Q12_st(numRuns: Int) {
+    val lineitemTable = loadLineitemST()
+    val ordersTable = loadOrdersST()
+    for (i <- 0 until numRuns) {
+      runQuery({
+        val mail = parseString("MAIL")
+        val ship = parseString("SHIP")
+        val constantDate = parseDate("1995-01-01")
+        val constantDate2 = parseDate("1994-01-01")
+        val so2 = Query(lineitemTable).filter(x =>
+          x.L_RECEIPTDATE < constantDate && x.L_COMMITDATE < constantDate && x.L_SHIPDATE < constantDate && x.L_SHIPDATE < x.L_COMMITDATE && x.L_COMMITDATE < x.L_RECEIPTDATE && x.L_RECEIPTDATE >= constantDate2 && (x.L_SHIPMODE === mail || x.L_SHIPMODE === ship))
+        val jo = Query(ordersTable).hashJoin(so2)(x => x.O_ORDERKEY)(x => x.L_ORDERKEY)((x, y) => x.O_ORDERKEY == y.L_ORDERKEY)
+        val URGENT = parseString("1-URGENT")
+        val HIGH = parseString("2-HIGH")
+        val aggOp = jo.groupBy(x => x._2.L_SHIPMODE).mapValues(list => {
+          Array(list.filter(t => t._1.O_ORDERPRIORITY === URGENT || t._1.O_ORDERPRIORITY === HIGH).count,
+            list.filter(t => t._1.O_ORDERPRIORITY =!= URGENT && t._1.O_ORDERPRIORITY =!= HIGH).count)
+        })
+        val sortOp = aggOp.sortBy(_._1.string)
+        sortOp.printRows(kv =>
+          printf("%s|%d|%d\n", kv._1.string, kv._2(0), kv._2(1)), -1)
+      })
+    }
+  }
+
+  def Q12_sr(numRuns: Int) {
+    val lineitemTable = loadLineitemSR()
+    val ordersTable = loadOrdersSR()
+    for (i <- 0 until numRuns) {
+      runQuery({
+        val mail = parseString("MAIL")
+        val ship = parseString("SHIP")
+        val constantDate = parseDate("1995-01-01")
+        val constantDate2 = parseDate("1994-01-01")
+        val so2 = Query(lineitemTable).filter(x =>
+          x.L_RECEIPTDATE < constantDate && x.L_COMMITDATE < constantDate && x.L_SHIPDATE < constantDate && x.L_SHIPDATE < x.L_COMMITDATE && x.L_COMMITDATE < x.L_RECEIPTDATE && x.L_RECEIPTDATE >= constantDate2 && (x.L_SHIPMODE === mail || x.L_SHIPMODE === ship))
+        val jo = Query(ordersTable).hashJoin(so2)(x => x.O_ORDERKEY)(x => x.L_ORDERKEY)((x, y) => x.O_ORDERKEY == y.L_ORDERKEY)
+        val URGENT = parseString("1-URGENT")
+        val HIGH = parseString("2-HIGH")
+        val aggOp = jo.groupBy(x => x._2.L_SHIPMODE).mapValues(list => {
+          Array(list.filter(t => t._1.O_ORDERPRIORITY === URGENT || t._1.O_ORDERPRIORITY === HIGH).count,
+            list.filter(t => t._1.O_ORDERPRIORITY =!= URGENT && t._1.O_ORDERPRIORITY =!= HIGH).count)
+        })
+        val sortOp = aggOp.sortBy(_._1.string)
+        sortOp.printRows(kv =>
+          printf("%s|%d|%d\n", kv._1.string, kv._2(0), kv._2(1)), -1)
+      })
+    }
+  }
 
   // def Q14(numRuns: Int) {
   //   val lineitemTable = loadLineitem()
