@@ -51,6 +51,31 @@ object TPCHLoader {
       val L_SHIPINSTRUCT: OptimalString = values(13).asInstanceOf[OptimalString]
       val L_SHIPMODE: OptimalString = values(14).asInstanceOf[OptimalString]
       val L_COMMENT: OptimalString = values(15).asInstanceOf[OptimalString]
+      override def hashCode(): Int = 
+        L_ORDERKEY.hashCode() + L_PARTKEY.hashCode() + L_SUPPKEY.hashCode() + 
+        L_LINENUMBER.hashCode() + L_QUANTITY.hashCode() + L_EXTENDEDPRICE.hashCode() + 
+        L_DISCOUNT.hashCode() + L_TAX.hashCode() + L_RETURNFLAG.hashCode() + 
+        L_LINESTATUS.hashCode() + L_SHIPDATE.hashCode() + L_COMMITDATE.hashCode() + 
+        L_RECEIPTDATE.hashCode() + L_SHIPINSTRUCT.hashCode() + L_SHIPMODE.hashCode() + 
+        L_COMMENT.hashCode()
+    }
+  )
+
+  def loadOrdersST() = loadTableGeneric(getTable("ORDERS"), values =>
+    new {
+      val O_ORDERKEY: Int = values(0).asInstanceOf[Int]
+      val O_CUSTKEY: Int = values(1).asInstanceOf[Int]
+      val O_ORDERSTATUS: Char = values(2).asInstanceOf[Char]
+      val O_TOTALPRICE: Double = values(3).asInstanceOf[Double]
+      val O_ORDERDATE: Int = values(4).asInstanceOf[Int]
+      val O_ORDERPRIORITY: OptimalString = values(5).asInstanceOf[OptimalString]
+      val O_CLERK: OptimalString = values(6).asInstanceOf[OptimalString]
+      val O_SHIPPRIORITY: Int = values(7).asInstanceOf[Int]
+      val O_COMMENT: OptimalString = values(8).asInstanceOf[OptimalString]
+      override def hashCode(): Int = 
+        O_ORDERKEY.hashCode() + O_CUSTKEY.hashCode() + O_ORDERSTATUS.hashCode() + 
+        O_TOTALPRICE.hashCode() + O_ORDERDATE.hashCode() + O_ORDERPRIORITY.hashCode() + 
+        O_CLERK.hashCode() + O_SHIPPRIORITY.hashCode() + O_COMMENT.hashCode()
     }
   )
 
@@ -75,6 +100,20 @@ object TPCHLoader {
     )
   )
 
+  def loadOrdersSR() = loadTableGeneric(getTable("ORDERS"), values =>
+    Rec(
+      "O_ORDERKEY" -> values(0).asInstanceOf[Int],
+      "O_CUSTKEY" -> values(1).asInstanceOf[Int],
+      "O_ORDERSTATUS" -> values(2).asInstanceOf[Char],
+      "O_TOTALPRICE" -> values(3).asInstanceOf[Double],
+      "O_ORDERDATE" -> values(4).asInstanceOf[Int],
+      "O_ORDERPRIORITY" -> values(5).asInstanceOf[OptimalString],
+      "O_CLERK" -> values(6).asInstanceOf[OptimalString],
+      "O_SHIPPRIORITY" -> values(7).asInstanceOf[Int],
+      "O_COMMENT" -> values(8).asInstanceOf[OptimalString]
+    )
+  )
+
   type LINEITEMRecordST = {
     val L_ORDERKEY: Int
     val L_PARTKEY: Int
@@ -92,6 +131,18 @@ object TPCHLoader {
     val L_SHIPINSTRUCT: OptimalString
     val L_SHIPMODE: OptimalString
     val L_COMMENT: OptimalString
+  }
+
+  type ORDERSRecordST = {
+    val O_ORDERKEY: Int
+    val O_CUSTKEY: Int
+    val O_ORDERSTATUS: Char
+    val O_TOTALPRICE: Double
+    val O_ORDERDATE: Int
+    val O_ORDERPRIORITY: OptimalString
+    val O_CLERK: OptimalString
+    val O_SHIPPRIORITY: Int
+    val O_COMMENT: OptimalString
   }
 }
 
