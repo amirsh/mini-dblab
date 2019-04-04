@@ -79,6 +79,23 @@ object TPCHLoader {
     }
   )
 
+  def loadCustomerST() = loadTableGeneric(getTable("CUSTOMER"), values =>
+    new {
+      val C_CUSTKEY: Int = values(0).asInstanceOf[Int]
+      val C_NAME: OptimalString = values(1).asInstanceOf[OptimalString]
+      val C_ADDRESS: OptimalString = values(2).asInstanceOf[OptimalString]
+      val C_NATIONKEY: Int = values(3).asInstanceOf[Int]
+      val C_PHONE: OptimalString = values(4).asInstanceOf[OptimalString]
+      val C_ACCTBAL: Double = values(5).asInstanceOf[Double]
+      val C_MKTSEGMENT: OptimalString = values(6).asInstanceOf[OptimalString]
+      val C_COMMENT: OptimalString = values(7).asInstanceOf[OptimalString]
+      override def hashCode(): Int = 
+        C_CUSTKEY.hashCode() + C_NAME.hashCode() + C_ADDRESS.hashCode() + 
+        C_NATIONKEY.hashCode() + C_PHONE.hashCode() + C_ACCTBAL.hashCode() + 
+        C_MKTSEGMENT.hashCode() + C_COMMENT.hashCode()
+    }
+  )
+
   def loadLineitemSR() = loadTableGeneric(getTable("LINEITEM"), values => 
     Rec(
       "L_ORDERKEY" -> values(0).asInstanceOf[Int],
@@ -114,6 +131,19 @@ object TPCHLoader {
     )
   )
 
+  def loadCustomerSR() = loadTableGeneric(getTable("CUSTOMER"), values =>
+    Rec(
+      "C_CUSTKEY" -> values(0).asInstanceOf[Int],
+      "C_NAME" -> values(1).asInstanceOf[OptimalString],
+      "C_ADDRESS" -> values(2).asInstanceOf[OptimalString],
+      "C_NATIONKEY" -> values(3).asInstanceOf[Int],
+      "C_PHONE" -> values(4).asInstanceOf[OptimalString],
+      "C_ACCTBAL" -> values(5).asInstanceOf[Double],
+      "C_MKTSEGMENT" -> values(6).asInstanceOf[OptimalString],
+      "C_COMMENT" -> values(7).asInstanceOf[OptimalString]
+    )
+  )
+
   type LINEITEMRecordST = {
     val L_ORDERKEY: Int
     val L_PARTKEY: Int
@@ -143,6 +173,17 @@ object TPCHLoader {
     val O_CLERK: OptimalString
     val O_SHIPPRIORITY: Int
     val O_COMMENT: OptimalString
+  }
+
+  type CUSTOMERRecordST = {
+    val C_CUSTKEY: Int
+    val C_NAME: OptimalString
+    val C_ADDRESS: OptimalString
+    val C_NATIONKEY: Int
+    val C_PHONE: OptimalString
+    val C_ACCTBAL: Double
+    val C_MKTSEGMENT: OptimalString
+    val C_COMMENT: OptimalString
   }
 }
 

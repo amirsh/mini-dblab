@@ -49,6 +49,21 @@ class TPCHBenchmark {
   }
 
   @Benchmark
+  def q3(): Unit = {
+    Q3(1)
+  }
+
+  @Benchmark
+  def q3_st(): Unit = {
+    Q3_st(1)
+  }
+
+  @Benchmark
+  def q3_sr(): Unit = {
+    Q3_sr(1)
+  }
+
+  @Benchmark
   def q4(): Unit = {
     Q4(1)
   }
@@ -64,6 +79,21 @@ class TPCHBenchmark {
   }
 
   @Benchmark
+  def q6(): Unit = {
+    Q6(1)
+  }
+
+  @Benchmark
+  def q6_st(): Unit = {
+    Q6_st(1)
+  }
+
+  @Benchmark
+  def q6_sr(): Unit = {
+    Q6_sr(1)
+  }
+
+  @Benchmark
   def q12(): Unit = {
     Q12(1)
   }
@@ -76,5 +106,20 @@ class TPCHBenchmark {
   @Benchmark
   def q12_sr(): Unit = {
     Q12_sr(1)
+  }
+
+  @Benchmark
+  def q18(): Unit = {
+    Q18(1)
+  }
+
+  @Benchmark
+  def q18_st(): Unit = {
+    Q18_st(1)
+  }
+
+  @Benchmark
+  def q18_sr(): Unit = {
+    Q18_sr(1)
   }
 }
